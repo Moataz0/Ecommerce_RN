@@ -24,18 +24,24 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {Home} from './screens';
 import Tabs from './navigation/tabs';
 
-const Stack = createStackNavigator();
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}
-        initialRouteName={'Home'}>
-        <Stack.Screen name="Home" component={Tabs} />
-      </Stack.Navigator>
+      <RootStack />
     </NavigationContainer>
+  );
+};
+
+const Stack = createStackNavigator();
+const RootStack = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+      initialRouteName={'Home'}>
+      <Stack.Screen name="Home" component={Tabs} />
+    </Stack.Navigator>
   );
 };
 
