@@ -21,15 +21,11 @@ const eye_close = require('../assets/icons/eye_close.png');
 const favourite = require('../assets/icons/favourite.png');
 const fb = require('../assets/icons/fb.png');
 const google = require('../assets/icons/google.png');
-const burger = require('../assets/icons/burger.png');
-const cherry = require('../assets/icons/cherry.png');
 const clock = require('../assets/icons/clock.png');
 const correct = require('../assets/icons/correct.png');
-const rice = require('../assets/icons/rice.png');
 const love = require('../assets/icons/love.png');
 const map = require('../assets/icons/map.png');
 const mastercard = require('../assets/icons/mastercard.png');
-const calories = require('../assets/icons/calories.png');
 const home = require('../assets/icons/home.png');
 const location = require('../assets/icons/location.png');
 const location1 = require('../assets/icons/location1.png');
@@ -51,8 +47,26 @@ const navigator = require('../assets/icons/navigator.png');
 const navigator1 = require('../assets/icons/navigator1.png');
 const sunny = require('../assets/icons/sunny.png');
 const night = require('../assets/icons/night.png');
+const livingRoom = require('../assets/icons/living-room.png');
+const bathroom = require('../assets/icons/bathtub.png');
+const bedroom = require('../assets/icons/bedroom.png');
+const workspace = require('../assets/icons/workspace.png');
+const diningTable = require('../assets/icons/dining-table.png');
+const outdoor = require('../assets/icons/Outdoor.png');
+const kitchen = require('../assets/icons/kitchen.png');
+const childrensRoom = require('../assets/icons/childrensRoom.png');
+const rightArrow = require('../assets/icons/right-arrow.png');
 
 export default {
+  rightArrow,
+  livingRoom,
+  bathroom,
+  bedroom,
+  workspace,
+  diningTable,
+  outdoor,
+  kitchen,
+  childrensRoom,
   apple,
   back,
   coupon,
@@ -76,15 +90,14 @@ export default {
   favourite,
   fb,
   google,
-  burger,
-  cherry,
+
   clock,
   correct,
-  rice,
+
   love,
   map,
   mastercard,
-  calories,
+
   home,
   location,
   location1,
