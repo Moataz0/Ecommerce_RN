@@ -17,7 +17,7 @@ import apiData from '../services/API';
 import CardItem from '../component/CardItem';
 
 const Home = () => {
-  const [menuList, setMenuList] = useState([]);
+  const [bestSelling, setBestSelling] = useState(dummyData.bestSelling);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const Home = () => {
     }
   };
 
-  const Section = ({title, onPress, children}) => {
+  const Section = ({title, onPress}) => {
     return (
       <View>
         {/* Header */}
@@ -42,8 +42,7 @@ const Home = () => {
           style={{
             flexDirection: 'row',
             marginHorizontal: SIZES.h1,
-            marginTop: 30,
-            marginBottom: 20,
+            marginVertical: 20,
           }}>
           <Text style={{flex: 1, ...FONTS.body2, color: COLORS.black}}>
             {title}
@@ -72,7 +71,6 @@ const Home = () => {
             />
           </TouchableOpacity>
         </View>
-        {children}
       </View>
     );
   };
@@ -151,10 +149,8 @@ const Home = () => {
   }
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      <View
-        style={{flex: 1, backgroundColor: COLORS.primary, paddingBottom: 100}}>
+      <View style={{flex: 1, backgroundColor: COLORS.primary}}>
         <Header title="Home" />
-
         {renderSearch()}
         {/* Slider Component */}
         <SliderImageBox />
@@ -163,26 +159,53 @@ const Home = () => {
           onPress={() => console.log('View All')}></Section>
         {/* renderCategories */}
         {renderCategories()}
-        <Section title="New Items" onPress={() => console.log('View All')}>
+        <View>
+          <Section title="New Items" onPress={() => console.log('View All')} />
           <FlatList
             data={products}
             keyExtractor={item => item.id}
+            showsHorizontalScrollIndicator={false}
             horizontal
-            showsVerticalScrollIndicator={false}
             renderItem={({item, index}) => (
-              <CardItem
-                containerStyle={{
-                  marginHorizontal: SIZES.sm,
-                }}
-                sale="30%"
-                item={item}
-                onPress={() => console.log('Vertical items')}
-              />
+              <View>
+                <CardItem
+                  containerStyle={{
+                    marginHorizontal: SIZES.md,
+                  }}
+                  item={item}
+                  onPress={() => console.log('Vertical items')}
+                />
+              </View>
             )}
           />
-        </Section>
+        </View>
 
-        <View></View>
+        <View>
+          <Section
+            title="Best Selling"
+            onPress={() => console.log('View All')}
+          />
+          <FlatList
+            data={bestSelling}
+            keyExtractor={item => item.id}
+            showsHorizontalScrollIndicator={false}
+            horizontal
+            renderItem={({item, index}) => (
+              <View style={{flex: 1, marginBottom: 150}}>
+                <CardItem
+                  containerStyle={{
+                    marginHorizontal: SIZES.md,
+                  }}
+                  withSale={true}
+                  localImage={true}
+                  sale="30%"
+                  item={item}
+                  onPress={() => console.log('Vertical items')}
+                />
+              </View>
+            )}
+          />
+        </View>
       </View>
     </ScrollView>
   );
