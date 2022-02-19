@@ -18,11 +18,12 @@ import {
   View,
 } from 'react-native';
 import Header from './component/Header';
-import {icons, SIZES} from './constants';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import {Home} from './screens';
+import { icons, SIZES } from './constants';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { Home } from './screens';
 import Tabs from './navigation/tabs';
+import LivingRoom from './screens/LivingRoom';
 
 const App = () => {
   return (
@@ -41,6 +42,7 @@ const RootStack = () => {
       }}
       initialRouteName={'Home'}>
       <Stack.Screen name="Tabs" component={Tabs} />
+      <Stack.Screen name="LivingRoom" component={LivingRoom} />
     </Stack.Navigator>
   );
 };

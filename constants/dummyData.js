@@ -13,7 +13,7 @@ const bestSelling = [
     description:
       'Full sleeves short Chair with three attractive colors and available in various sizes.',
     price: 50.0,
-    originalPrice: 80.0,
+    originalPrice: 80.99,
     rating: {
       rate: 4.1,
     },

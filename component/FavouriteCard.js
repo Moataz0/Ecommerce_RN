@@ -1,15 +1,16 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import {COLORS, FONTS, icons, SIZES} from '../constants';
+import { COLORS, FONTS, icons, SIZES } from '../constants';
 import TextButton from './TextButton';
-import {IconButton} from '.';
+import { IconButton } from '.';
 
-const FavouriteCard = ({containerStyle, imageStyle, item, onPress}) => {
+const FavouriteCard = ({ containerStyle, imageStyle, item, onPress }) => {
   return (
     <View
       style={{
         flexDirection: 'row',
         borderRadius: SIZES.sm,
+        marginTop: 10,
         shadowColor: '#000',
         shadowOffset: {
           width: 0,
@@ -22,13 +23,13 @@ const FavouriteCard = ({containerStyle, imageStyle, item, onPress}) => {
         backgroundColor: COLORS.primary,
         ...containerStyle,
       }}>
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         {/* Image */}
         <Image source={item.image} style={imageStyle} resizeMode="contain" />
 
-        <View style={{marginHorizontal: SIZES.xxl, marginVertical: 4}}>
+        <View style={{ marginHorizontal: SIZES.xxl, marginVertical: 4 }}>
           <IconButton
-            icon={icons.love}
+            icon={icons.heart}
             containerStyle={{
               width: 40,
               height: 40,
@@ -39,15 +40,15 @@ const FavouriteCard = ({containerStyle, imageStyle, item, onPress}) => {
               borderColor: COLORS.red,
             }}
             iconStyle={{
-              height: 25,
-              width: 25,
+              height: 20,
+              width: 20,
               tintColor: COLORS.red,
             }}
             onPress={() => console.log('Like')}
           />
         </View>
       </View>
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         <Text
           style={{
             ...FONTS.h4,
@@ -85,7 +86,7 @@ const FavouriteCard = ({containerStyle, imageStyle, item, onPress}) => {
           }}>
           <Image
             source={icons.cross}
-            style={{width: 20, height: 20, tintColor: COLORS.gray}}
+            style={{ width: 20, height: 20, tintColor: COLORS.gray }}
           />
         </View>
         <View
@@ -110,7 +111,7 @@ const FavouriteCard = ({containerStyle, imageStyle, item, onPress}) => {
             label2={
               <Image
                 source={icons.cart}
-                style={{height: 15, width: 15, tintColor: COLORS.primary}}
+                style={{ height: 15, width: 15, tintColor: COLORS.primary }}
               />
             }
             onPress={onPress}

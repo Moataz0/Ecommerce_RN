@@ -1,9 +1,9 @@
-import {StyleSheet, Text, View, Dimensions} from 'react-native';
+import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import React from 'react';
-import {SliderBox} from 'react-native-image-slider-box';
-import {COLORS, SIZES} from '../constants';
+import { SliderBox } from 'react-native-image-slider-box';
+import { COLORS, SIZES } from '../constants';
 
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 const SliderImageBox = () => {
   const images = [
     require('../assets/images/banner4.jpg'),
@@ -51,17 +51,17 @@ const SliderImageBox = () => {
       <View
         style={{
           position: 'absolute',
-          top: height * 0.15,
+          top: height * 0.10,
           marginLeft: SIZES.xl,
           flex: 1,
         }}>
         <Text
-          style={{color: '#FFF', fontSize: SIZES.h3, marginBottom: SIZES.sm}}>
+          style={{ color: '#FFF', fontSize: SIZES.h3, marginBottom: SIZES.sm }}>
           New Arrivals
         </Text>
         <Text style={styles.bannerTitle}>Big Sale {'\n'}50% Off</Text>
         <Text
-          style={{color: COLORS.white, fontSize: SIZES.h4, fontWeight: '500'}}>
+          style={{ color: COLORS.white, fontSize: SIZES.h4, fontWeight: '500' }}>
           SHOP NOW
         </Text>
         <View

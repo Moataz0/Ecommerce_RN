@@ -56,8 +56,12 @@ const outdoor = require('../assets/icons/Outdoor.png');
 const kitchen = require('../assets/icons/kitchen.png');
 const childrensRoom = require('../assets/icons/childrensRoom.png');
 const rightArrow = require('../assets/icons/right-arrow.png');
+const heart = require('../assets/icons/heart2.png');
+const category = require('../assets/icons/Category.png');
 
 export default {
+  category,
+  heart,
   rightArrow,
   livingRoom,
   bathroom,
