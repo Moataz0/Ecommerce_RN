@@ -7,10 +7,10 @@ import {
   Dimensions,
 } from 'react-native';
 import React from 'react';
-import { COLORS, FONTS, icons, SIZES } from '../constants';
-import { Rating } from '.';
+import {COLORS, FONTS, icons, SIZES} from '../constants';
+import {Rating} from '.';
 
-const { height, width } = Dimensions.get('window');
+const {height, width} = Dimensions.get('window');
 const CardItem = ({
   containerStyle,
   item,
@@ -23,7 +23,6 @@ const CardItem = ({
     <TouchableOpacity
       onPress={onPress}
       style={{
-        width: 200,
         padding: SIZES.sm,
         alignItems: 'center',
         justifyContent: 'center',
@@ -50,7 +49,7 @@ const CardItem = ({
           marginHorizontal: withSale ? SIZES.sm : SIZES.lg,
           zIndex: 1,
         }}>
-        <View style={{ flex: 1, flexDirection: 'row-reverse' }}>
+        <View style={{flex: 1, flexDirection: 'row-reverse'}}>
           <Image
             source={icons.love}
             style={{
@@ -70,7 +69,7 @@ const CardItem = ({
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-            <Text style={{ color: COLORS.white, ...FONTS.body5 }}>{sale}</Text>
+            <Text style={{color: COLORS.white, ...FONTS.body5}}>{sale}</Text>
           </View>
         )}
       </View>
@@ -84,7 +83,7 @@ const CardItem = ({
           alignItems: 'center',
         }}>
         <Image
-          source={localImage ? item.image : { uri: item.image }}
+          source={localImage ? item.image : {uri: item.image}}
           resizeMode="contain"
           style={{
             height: '100%',
@@ -93,7 +92,7 @@ const CardItem = ({
           }}
         />
       </View>
-      <View style={{ marginTop: 20, marginLeft: 10 }}>
+      <View style={{marginTop: 20, marginLeft: 10}}>
         <Text
           style={{
             ...FONTS.h4,
@@ -113,7 +112,7 @@ const CardItem = ({
             {item.description.substring(0, 100) + ' ...'}
           </Text>
         )}
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <Text
             style={{
               marginVertical: SIZES.sm,
@@ -132,13 +131,11 @@ const CardItem = ({
               ${parseFloat(item.originalPrice).toFixed(2)}
             </Text>
           )}
-
         </View>
 
-        <Rating rating={item.rating.rate} iconStyle={{ marginLeft: 3 }} />
+        <Rating rating={item.rating.rate} iconStyle={{marginLeft: 3}} />
       </View>
     </TouchableOpacity>
-
   );
 };
 

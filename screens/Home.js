@@ -8,15 +8,15 @@ import {
   Image,
   SafeAreaView,
 } from 'react-native';
-import React, { useState } from 'react';
-import { Header, SliderImageBox } from '../component';
-import { COLORS, dummyData, FONTS, icons, SIZES } from '../constants';
-import { ScrollView, TextInput } from 'react-native-gesture-handler';
-import { useEffect } from 'react';
+import React, {useState} from 'react';
+import {Header, SliderImageBox} from '../component';
+import {COLORS, dummyData, FONTS, icons, SIZES} from '../constants';
+import {ScrollView, TextInput} from 'react-native-gesture-handler';
+import {useEffect} from 'react';
 import apiData from '../services/API';
 import CardItem from '../component/CardItem';
 
-const Home = ({ navigation }) => {
+const Home = ({navigation}) => {
   const [bestSelling, setBestSelling] = useState(dummyData.bestSelling);
   const [products, setProducts] = useState([]);
 
@@ -34,7 +34,7 @@ const Home = ({ navigation }) => {
     }
   };
 
-  const Section = ({ title, onPress }) => {
+  const Section = ({title, onPress}) => {
     return (
       <View>
         {/* Header */}
@@ -44,7 +44,7 @@ const Home = ({ navigation }) => {
             marginHorizontal: SIZES.h1,
             marginVertical: 20,
           }}>
-          <Text style={{ flex: 1, ...FONTS.body2, color: COLORS.black }}>
+          <Text style={{flex: 1, ...FONTS.body2, color: COLORS.black}}>
             {title}
           </Text>
           <TouchableOpacity
@@ -82,9 +82,9 @@ const Home = ({ navigation }) => {
         keyExtractor={item => item.id}
         horizontal
         showsHorizontalScrollIndicator={false}
-        renderItem={({ item, index }) => (
+        renderItem={({item, index}) => (
           <TouchableOpacity
-            onPress={() => navigation.navigate("LivingRoom")}
+            onPress={() => navigation.navigate('LivingRoom')}
             style={{
               flexDirection: 'column',
               justifyContent: 'center',
@@ -109,7 +109,7 @@ const Home = ({ navigation }) => {
             }}>
             <Image
               source={item.icon}
-              style={{ height: 40, width: 40, tintColor: COLORS.red }}
+              style={{height: 40, width: 40, tintColor: COLORS.red}}
             />
             <Text
               style={{
@@ -138,10 +138,10 @@ const Home = ({ navigation }) => {
         }}>
         <Image
           source={icons.search}
-          style={{ height: 20, width: 20, tintColor: COLORS.black }}
+          style={{height: 20, width: 20, tintColor: COLORS.black}}
         />
         <TextInput
-          style={{ flex: 1, marginLeft: SIZES.sm, ...FONTS.body4 }}
+          style={{flex: 1, marginLeft: SIZES.sm, ...FONTS.body4}}
           placeholderTextColor={COLORS.gray}
           placeholder="Search"
         />
@@ -150,16 +150,14 @@ const Home = ({ navigation }) => {
   }
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      <View style={{ flex: 1, backgroundColor: COLORS.primary }}>
+      <View style={{flex: 1, backgroundColor: COLORS.primary}}>
         <Header title="Home" />
         {renderSearch()}
         {/* Slider Component */}
         <SliderImageBox />
         <Section
           title="By Collection"
-          onPress={() => console.log('View All')}>
-
-        </Section>
+          onPress={() => console.log('View All')}></Section>
         {/* renderCategories */}
         {renderCategories()}
         <Section title="New Items" onPress={() => console.log('View All')} />
@@ -168,35 +166,32 @@ const Home = ({ navigation }) => {
           keyExtractor={item => item.id}
           showsHorizontalScrollIndicator={false}
           horizontal
-          renderItem={({ item, index }) => (
+          renderItem={({item, index}) => (
             <CardItem
               key={index}
               containerStyle={{
+                width: 200,
                 marginHorizontal: SIZES.md,
-                marginVertical: SIZES.md
+                marginVertical: SIZES.md,
               }}
               item={item}
               onPress={() => console.log('Vertical items')}
             />
-
           )}
         />
-        <Section
-          title="Best Selling"
-          onPress={() => console.log('View All')}
-        />
+        <Section title="Best Selling" onPress={() => console.log('View All')} />
         <FlatList
           data={bestSelling}
           keyExtractor={item => item.id}
           showsHorizontalScrollIndicator={false}
           horizontal
-          renderItem={({ item, index }) => (
+          renderItem={({item, index}) => (
             <CardItem
               key={index}
               containerStyle={{
                 marginHorizontal: SIZES.md,
                 marginTop: SIZES.md,
-                marginBottom: SIZES.xl * 2
+                marginBottom: SIZES.xl * 2,
               }}
               withSale={true}
               localImage={true}
@@ -204,10 +199,8 @@ const Home = ({ navigation }) => {
               item={item}
               onPress={() => console.log('Vertical items')}
             />
-
           )}
         />
-
       </View>
     </ScrollView>
   );
