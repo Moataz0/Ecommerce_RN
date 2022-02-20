@@ -118,8 +118,41 @@ const category = [
   },
 ];
 
+const filterItems = [
+  {
+    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+    title: "Latest",
+    icon: require('../assets/icons/clock.png'),
+    lineDivider: ""
+  },
+  {
+    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
+    title: "Popularity",
+    icon: require('../assets/icons/star.png'),
+    lineDivider: ""
+  },
+  {
+    id: "58694a0f-3da1-471f-bd96-145571e29d72",
+    title: "Low to High Prices",
+    icon: require('../assets/icons/high-price.png'),
+    lineDivider: ""
+  },
+  {
+    id: "58694a0f-3da1-471f-bd96-145571e29d73",
+    title: "High to Low Prices",
+    icon: require('../assets/icons/low-price.png'),
+    lineDivider: ""
+  },
+  {
+    id: "58694a0f-3da1-471f-bd96-145571e29d74",
+    title: "Discount",
+    icon: require('../assets/icons/discount2.png'),
+    lineDivider: ""
+  },
+]
 export default {
   myProfile,
   category,
   bestSelling,
+  filterItems
 };

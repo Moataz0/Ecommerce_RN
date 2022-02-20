@@ -9,13 +9,14 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
-import {Header, IconButton, CardItem, FilterModal} from '../component';
-import {COLORS, dummyData, FONTS, icons, SIZES} from '../constants';
+import React, { useState } from 'react';
+import { Header, IconButton, CardItem } from '../component';
+import { COLORS, dummyData, FONTS, icons, SIZES } from '../constants';
 import CheckBox from '@react-native-community/checkbox';
+import { FilterModal } from '.';
 
-const {width} = Dimensions.get('window');
-const LivingRoom = ({navigation}) => {
+const { width } = Dimensions.get('window');
+const LivingRoom = ({ navigation }) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [selectedCategoryId, setSelectedCategoryId] = useState(1);
   const [showFilterModal, setShowFilterModal] = useState(false);
@@ -36,7 +37,7 @@ const LivingRoom = ({navigation}) => {
               height: 50,
               justifyContent: 'center',
               alignItems: 'center',
-              transform: [{scaleX: -1}],
+              transform: [{ scaleX: -1 }],
             }}
             onPress={() => navigation.goBack()}
           />
@@ -62,8 +63,8 @@ const LivingRoom = ({navigation}) => {
 
   function renderItemsCount() {
     return (
-      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-        <View style={{padding: SIZES.lg}}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+        <View style={{ padding: SIZES.lg }}>
           <Text>255 items</Text>
         </View>
         <View
@@ -80,7 +81,7 @@ const LivingRoom = ({navigation}) => {
           />
           <Image
             source={icons.category}
-            style={{height: 20, width: 20, tintColor: COLORS.red}}
+            style={{ height: 20, width: 20, tintColor: COLORS.red }}
           />
         </View>
       </View>
@@ -119,7 +120,7 @@ const LivingRoom = ({navigation}) => {
           }}>
           <Image
             source={icons.filter}
-            style={{height: 25, width: 25, tintColor: '#4d4f53'}}
+            style={{ height: 25, width: 25, tintColor: '#4d4f53' }}
           />
         </TouchableOpacity>
 
@@ -128,7 +129,7 @@ const LivingRoom = ({navigation}) => {
           horizontal
           showsHorizontalScrollIndicator={false}
           keyExtractor={item => item.id}
-          renderItem={({item, index}) => (
+          renderItem={({ item, index }) => (
             <TouchableOpacity
               style={{
                 flexDirection: 'row',
@@ -181,13 +182,13 @@ const LivingRoom = ({navigation}) => {
   function renderAllProduct() {
     return (
       <FlatList
-        contentContainerStyle={{paddingBottom: 20}}
+        contentContainerStyle={{ paddingBottom: 20 }}
         data={dummyData.bestSelling}
         showsVerticalScrollIndicator={false}
         key={'_'}
         keyExtractor={item => '_' + item.id}
         numColumns={2}
-        renderItem={({item, index}) => {
+        renderItem={({ item, index }) => {
           return (
             <View style={styles.parent}>
               <CardItem
@@ -212,7 +213,7 @@ const LivingRoom = ({navigation}) => {
     );
   }
   return (
-    <View style={{flex: 1, backgroundColor: COLORS.primary}}>
+    <View style={{ flex: 1, backgroundColor: COLORS.primary }}>
       {renderHeader()}
       {showFilterModal && (
         <FilterModal

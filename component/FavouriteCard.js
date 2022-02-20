@@ -4,6 +4,8 @@ import { COLORS, FONTS, icons, SIZES } from '../constants';
 import TextButton from './TextButton';
 import { IconButton } from '.';
 
+
+
 const FavouriteCard = ({ containerStyle, imageStyle, item, onPress }) => {
   return (
     <View
@@ -94,9 +96,10 @@ const FavouriteCard = ({ containerStyle, imageStyle, item, onPress }) => {
             flex: 1,
             flexDirection: 'row',
             paddingTop: SIZES.lg,
-            alignContent: 'flex-start',
+            justifyContent: 'center',
+            alignItems: "center",
             paddingRight: SIZES.lg,
-            marginLeft: -SIZES.xl,
+            // marginLeft: -SIZES.xl,
           }}>
           <TextButton
             buttonContainerStyle={{
