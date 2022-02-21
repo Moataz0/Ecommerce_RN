@@ -14,6 +14,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { COLORS, dummyData, FONTS, icons, SIZES } from '../constants';
 import { IconButton, TwoPointSlider, LineDivider } from '../component';
 import { FlatList } from 'react-native-gesture-handler';
+import TextButton from '../component/TextButton';
 
 
 const Section = ({ containerStyle, title, children }) => {
@@ -57,17 +58,17 @@ const FilterModal = ({ isVisible, onClose }) => {
 
   const modalY = modalAnimatedValue.interpolate({
     inputRange: [0, 1],
-    outputRange: [SIZES.height, SIZES.height - 380],
+    outputRange: [SIZES.height, SIZES.height - 460],
   });
 
   function renderPriceRange() {
     return (
-      <View style={{ flex: 1, }}>
-        <View style={{ alignSelf: "stretch", width: "100%", paddingVertical: 4, }}>
+      <View style={{ flex: 1 }}>
+        <View style={{ alignSelf: "stretch", width: "100%", }}>
           <Text style={{ backgroundColor: COLORS.lightGray2, paddingVertical: SIZES.sm }}>Filter By</Text>
         </View>
-        <Section title="Price Range" containerStyle={{ marginBottom: 20 }}>
-          <View style={{ alignItems: 'center' }}>
+        <Section title="Price Range" containerStyle={{ marginBottom: SIZES.sm }}>
+          <View style={{ alignItems: 'center', marginBottom: -SIZES.sm }}>
             <TwoPointSlider
               values={[0, 115]}
               min={1}
@@ -93,6 +94,7 @@ const FilterModal = ({ isVisible, onClose }) => {
 
           return (
             <TouchableOpacity
+              key={item.id}
               onPress={() => setSelectedId(item.id)}
               style={{ backgroundColor: backgroundColor, ...styles.item, }}>
               <View style={{
@@ -109,7 +111,18 @@ const FilterModal = ({ isVisible, onClose }) => {
                   color:
                     COLORS.black, ...FONTS.h4, marginHorizontal: SIZES.sm
                 }}>{item.title}</Text>
+                {selectedId === item.id && (
+                  <View style={{ flex: 1, alignItems: "flex-end", marginHorizontal: SIZES.sm }}>
+                    <Image source={icons.check} style={{ height: 25, width: 25, tintColor: COLORS.red }} />
+                  </View>
+                )}
+
+
               </View>
+
+              <LineDivider lineStyle={{ alignSelf: 'stretch', marginTop: SIZES.sm }} />
+
+
             </TouchableOpacity>
           )
         }}
@@ -117,17 +130,6 @@ const FilterModal = ({ isVisible, onClose }) => {
 
     )
   }
-
-
-  let getDiscount = dummyData.filterItems.map((rank, i, arr) =>
-    arr.length - 1 === i && (
-      <TouchableOpacity style={{ flexDirection: "row", alignItems: "center" }}>
-        <Image source={rank.icon} style={{ height: 15, width: 15, tintColor: COLORS.transparentPrimary }} />
-        <Text style={{ color: COLORS.white, backgroundColor: "red" }}>{rank.title}</Text>
-      </TouchableOpacity>
-    )
-
-  )
 
   return (
     <Modal animationType="fade" transparent={true} visible={isVisible}>
@@ -174,25 +176,60 @@ const FilterModal = ({ isVisible, onClose }) => {
           <ScrollView
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{
-              paddingBottom: 250,
-            }}>
+              paddingBottom: 220
+            }}
+          >
             <LineDivider lineStyle={{ alignSelf: 'stretch' }} />
-
             {renderFilterItems()}
             {renderPriceRange()}
+            <LineDivider lineStyle={{ alignSelf: 'stretch', marginBottom: SIZES.sm }} />
             {/* renderDiscount */}
-            <TouchableOpacity style={{ flex: 1, paddingBottom: 100, }}>
-              {getDiscount}
+            <TouchableOpacity style={{ flexDirection: "row", alignItems: "center", }}>
+              <Image source={icons.discount2} style={{ height: 15, width: 15, tintColor: COLORS.transparentPrimary }} />
+              <Text style={{ color: COLORS.black, marginHorizontal: SIZES.sm }}>Discount</Text>
             </TouchableOpacity>
+            {/* action buttons */}
 
+            <View style={{
+              flex: 1,
+              flexDirection: "row",
+              paddingTop: SIZES.md,
+              paddingHorizontal: SIZES.lg,
+              justifyContent: "space-evenly"
+            }}>
+              <TextButton label="Reset"
+                buttonContainerStyle={{
+                  backgroundColor: COLORS.primary,
+                  paddingHorizontal: SIZES.lg * 2,
+                  paddingVertical: SIZES.sm,
+                  borderRadius: 4,
+                  borderWidth: 1,
+                  borderTopColor: COLORS.gray2,
+                  borderRightColor: COLORS.gray2,
+                  borderLeftColor: COLORS.gray2,
+                  borderBottomColor: COLORS.gray2,
+                }}
+                labelStyle={{
+                  color: COLORS.black,
+                }} />
 
+              <TextButton label="Apply"
+                buttonContainerStyle={{
+                  backgroundColor: COLORS.red,
+                  paddingHorizontal: SIZES.lg * 2,
+                  paddingVertical: SIZES.sm,
+                  borderRadius: 4,
+                  borderWidth: 1,
+                  borderTopColor: COLORS.gray2,
+                  borderRightColor: COLORS.gray2,
+                  borderLeftColor: COLORS.gray2,
+                  borderBottomColor: COLORS.gray2,
+                }}
+                labelStyle={{
+                  color: COLORS.primary,
+                }} />
 
-
-
-
-
-
-
+            </View>
           </ScrollView>
         </Animated.View>
       </View>
@@ -210,7 +247,7 @@ const styles = StyleSheet.create({
   },
   item: {
     flex: 1,
-    marginVertical: SIZES.sm,
+    marginVertical: 4,
   },
 
 })

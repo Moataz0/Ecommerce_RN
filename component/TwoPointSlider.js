@@ -1,7 +1,7 @@
-import {StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
-import {COLORS, FONTS, SIZES} from '../constants';
+import { COLORS, FONTS, SIZES } from '../constants';
 
 const TwoPointSlider = ({
   values,
@@ -36,7 +36,7 @@ const TwoPointSlider = ({
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-            <Text style={{marginBottom: 20, color: COLORS.black, ...FONTS.h3}}>
+            <Text style={{ marginBottom: 20, color: COLORS.black, ...FONTS.h3 }}>
               {prefix}
               {e.currentValue}
               {postfix}

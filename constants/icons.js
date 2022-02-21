@@ -58,8 +58,12 @@ const childrensRoom = require('../assets/icons/childrensRoom.png');
 const rightArrow = require('../assets/icons/right-arrow.png');
 const heart = require('../assets/icons/heart2.png');
 const category = require('../assets/icons/Category.png');
+const discount2 = require('../assets/icons/discount2.png');
+const check = require('../assets/icons/check.png');
 
 export default {
+  check,
+  discount2,
   category,
   heart,
   rightArrow,
