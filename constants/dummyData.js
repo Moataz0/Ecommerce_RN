@@ -4,6 +4,34 @@ const myProfile = {
   address: 'Maadi,Cairo',
 };
 
+const cart = [
+  {
+    id: 1,
+    image: require('../assets/images/5.jpg'),
+    sale: '30%',
+    title: 'Chair Dacey li - Black',
+    description:
+      'Full sleeves short Chair with three attractive colors and available in various sizes.',
+    price: 50.0,
+    originalPrice: 80.99,
+    rating: {
+      rate: 4.1,
+    },
+  },
+  {
+    id: 2,
+    image: require('../assets/images/1.jpg'),
+    sale: '30%',
+    title: 'Chair Patchwork 3GA',
+    description:
+      'Full sleeves short Chair with three attractive colors and available in various sizes.',
+    price: 150.0,
+    originalPrice: 180.99,
+    rating: {
+      rate: 4.9,
+    },
+  },
+];
 const bestSelling = [
   {
     id: 1,
@@ -120,30 +148,30 @@ const category = [
 
 const filterItems = [
   {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    title: "Latest",
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    title: 'Latest',
     icon: require('../assets/icons/clock.png'),
   },
   {
-    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-    title: "Popularity",
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    title: 'Popularity',
     icon: require('../assets/icons/star.png'),
   },
   {
-    id: "58694a0f-3da1-471f-bd96-145571e29d72",
-    title: "Low to High Prices",
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Low to High Prices',
     icon: require('../assets/icons/high-price.png'),
   },
   {
-    id: "58694a0f-3da1-471f-bd96-145571e29d73",
-    title: "High to Low Prices",
+    id: '58694a0f-3da1-471f-bd96-145571e29d73',
+    title: 'High to Low Prices',
     icon: require('../assets/icons/low-price.png'),
   },
-
-]
+];
 export default {
   myProfile,
   category,
   bestSelling,
-  filterItems
+  filterItems,
+  cart,
 };

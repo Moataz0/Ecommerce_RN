@@ -13,7 +13,7 @@ const Header = ({
     <View style={{flexDirection: 'row', height: 60, ...containerStyle}}>
       {leftComponent}
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text style={{...FONTS.h3, ...titleStyle, color: COLORS.black}}>
+        <Text style={{...FONTS.h2, ...titleStyle, color: COLORS.black}}>
           {title}
         </Text>
       </View>

@@ -1,10 +1,10 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, TextInput, View} from 'react-native';
 import React from 'react';
 import {COLORS, FONTS, icons, SIZES} from '../constants';
 import TextButton from './TextButton';
 import {IconButton} from '.';
 
-const FavouriteCard = ({containerStyle, imageStyle, item, onPress}) => {
+const CartItems = ({containerStyle, imageStyle, item, onPress}) => {
   return (
     <View
       style={{
@@ -14,11 +14,11 @@ const FavouriteCard = ({containerStyle, imageStyle, item, onPress}) => {
         shadowColor: '#000',
         shadowOffset: {
           width: 0,
-          height: 3,
+          height: 2,
         },
         shadowOpacity: 0.27,
-        shadowRadius: 4.65,
-        elevation: 6,
+        shadowRadius: 2.65,
+        elevation: 3,
         ...containerStyle,
         backgroundColor: COLORS.primary,
         ...containerStyle,
@@ -37,12 +37,12 @@ const FavouriteCard = ({containerStyle, imageStyle, item, onPress}) => {
               alignItems: 'center',
               borderWidth: 2,
               borderRadius: SIZES.sm,
-              borderColor: COLORS.red,
+              borderColor: COLORS.lightGray1,
             }}
             iconStyle={{
               height: 20,
               width: 20,
-              tintColor: COLORS.red,
+              tintColor: COLORS.lightGray1,
             }}
             onPress={() => console.log('Like')}
           />
@@ -99,23 +99,9 @@ const FavouriteCard = ({containerStyle, imageStyle, item, onPress}) => {
             paddingRight: SIZES.lg,
             // marginLeft: -SIZES.xl,
           }}>
-          <TextButton
-            buttonContainerStyle={{
-              flex: 1,
-              flexDirection: 'row',
-              paddingHorizontal: 4,
-              borderRadius: SIZES.sm,
-              backgroundColor: COLORS.red,
-              height: 40,
-            }}
-            label="Move to cart"
-            label2={
-              <Image
-                source={icons.cart}
-                style={{height: 15, width: 15, tintColor: COLORS.primary}}
-              />
-            }
-            onPress={onPress}
+          <TextInput
+            placeholder="item"
+            style={{borderWidth: 1, width: 150, padding: 2}}
           />
         </View>
       </View>
@@ -123,4 +109,4 @@ const FavouriteCard = ({containerStyle, imageStyle, item, onPress}) => {
   );
 };
 
-export default FavouriteCard;
+export default CartItems;
