@@ -168,10 +168,24 @@ const filterItems = [
     icon: require('../assets/icons/low-price.png'),
   },
 ];
+
+const more = {
+  about_us: 'About Us',
+  settings: 'Settings',
+  customer_service: 'Customer Service',
+};
+const myAccount = {
+  my_orders: 'My Orders',
+  my_details: 'My Details',
+  payment_cards: 'Payment Cards',
+  sign_out: 'Sign Out',
+};
 export default {
   myProfile,
   category,
   bestSelling,
   filterItems,
   cart,
+  more,
+  myAccount,
 };

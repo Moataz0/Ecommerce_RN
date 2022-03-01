@@ -5,11 +5,11 @@ import {
   Text,
   View,
 } from 'react-native';
-import React, { useEffect, useState } from 'react';
-import { FavouriteCard, Header, IconButton } from '../component';
-import { COLORS, dummyData, FONTS, icons, SIZES } from '../constants';
+import React, {useEffect, useState} from 'react';
+import {FavouriteCard, Header, IconButton} from '../component';
+import {COLORS, dummyData, FONTS, icons, SIZES} from '../constants';
 
-const Favourite = ({ navigation }) => {
+const Favourite = ({navigation}) => {
   const [isLoading, setIsLoading] = useState(false);
 
   function renderFavouriteItems() {
@@ -25,11 +25,11 @@ const Favourite = ({ navigation }) => {
           {dummyData.bestSelling.length} items
         </Text>
         <FlatList
-          style={{ paddingTop: SIZES.sm }}
+          style={{paddingTop: SIZES.sm}}
           data={dummyData.bestSelling}
           keyExtractor={item => item.id}
           showsVerticalScrollIndicator={false}
-          renderItem={({ item, i }) => {
+          renderItem={({item, i}) => {
             return (
               <FavouriteCard
                 imageStyle={{
@@ -49,7 +49,7 @@ const Favourite = ({ navigation }) => {
               />
             );
           }}
-          ListFooterComponent={<View style={{ height: 150 }} />}
+          ListFooterComponent={<View style={{height: 150}} />}
         />
       </View>
     );
@@ -63,8 +63,8 @@ const Favourite = ({ navigation }) => {
     // return () => setIsLoading(true);
   }, []);
 
-  return (
-    <View style={{ flex: 1, backgroundColor: COLORS.primary }}>
+  function renderHeader() {
+    return (
       <Header
         title="My Favourites"
         containerStyle={{
@@ -79,13 +79,17 @@ const Favourite = ({ navigation }) => {
               height: 50,
               justifyContent: 'center',
               alignItems: 'center',
-              transform: [{ scaleX: -1 }],
+              transform: [{scaleX: -1}],
             }}
             onPress={() => navigation.navigate('Home')}
           />
         }
       />
-
+    );
+  }
+  return (
+    <View style={{flex: 1, backgroundColor: COLORS.primary}}>
+      {renderHeader()}
       {isLoading ? (
         <View style={styles.container}>
           <ActivityIndicator size="large" color={COLORS.red} />

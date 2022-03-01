@@ -197,7 +197,7 @@ const Home = ({navigation}) => {
               localImage={true}
               sale="30%"
               item={item}
-              onPress={() => console.log('Vertical items')}
+              onPress={() => navigation.navigate('ProductDetail')}
             />
           )}
         />
