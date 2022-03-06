@@ -12,3 +12,4 @@ export {default as FormInput} from './FormInput';
 export {default as TextButton} from './TextButton';
 export {default as FooterTotal} from './FooterTotal';
 export {default as TowColumns} from './TowColumns';
+export {default as HorizontalItems} from './HorizontalItems';

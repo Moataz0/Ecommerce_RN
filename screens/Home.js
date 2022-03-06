@@ -197,7 +197,16 @@ const Home = ({navigation}) => {
               localImage={true}
               sale="30%"
               item={item}
-              onPress={() => navigation.navigate('ProductDetail')}
+              onPress={() =>
+                navigation.navigate('ProductDetail', {
+                  itemId: item.id,
+                  itemName: item.title,
+                  itemImage: item.image,
+                  itemPrice: item.price,
+                  itemRating: item.rating.rate,
+                  itemDesc: item.description,
+                })
+              }
             />
           )}
         />

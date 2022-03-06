@@ -133,7 +133,10 @@ const CardItem = ({
           )}
         </View>
 
-        <Rating rating={item.rating.rate} iconStyle={{marginLeft: 3}} />
+        <Rating
+          rating={item.rating.rate}
+          iconStyle={{marginLeft: 3, height: 15, width: 15}}
+        />
       </View>
     </TouchableOpacity>
   );

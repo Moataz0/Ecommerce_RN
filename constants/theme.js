@@ -9,7 +9,7 @@ export const COLORS = {
   lightOrange2: '#FDDED4',
   lightOrange3: '#FFD9AD',
   green: '#27AE60',
-  red: '#FF1717',
+  red: '#E13510',
   red2: '#FF6C44',
   blue: '#0064C0',
   darkBlue: '#111A2C',
@@ -22,7 +22,7 @@ export const COLORS = {
   lightGray2: '#F5F5F8',
   white2: '#FBFBFB',
   white: '#FFFFFF',
-  black: '#000000',
+  black: '#3D3942',
 
   transparent: 'transparent',
   transparentWhite1: 'rgba(255, 255, 255, 0.1)',

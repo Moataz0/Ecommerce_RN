@@ -19,7 +19,7 @@ const Rating = ({
         style={{
           tintColor: rating >= 1 ? activeColor : inActiveColor,
           ...iconStyle,
-          ...styles.rateIcon,
+          // ...styles.rateIcon,
         }}
       />
       <Image
@@ -27,7 +27,7 @@ const Rating = ({
         style={{
           tintColor: rating >= 2 ? activeColor : inActiveColor,
           ...iconStyle,
-          ...styles.rateIcon,
+          // ...styles.rateIcon,
         }}
       />
       <Image
@@ -35,7 +35,7 @@ const Rating = ({
         style={{
           tintColor: rating >= 3 ? activeColor : inActiveColor,
           ...iconStyle,
-          ...styles.rateIcon,
+          // ...styles.rateIcon,
         }}
       />
       <Image
@@ -43,7 +43,7 @@ const Rating = ({
         style={{
           tintColor: rating >= 4 ? activeColor : inActiveColor,
           ...iconStyle,
-          ...styles.rateIcon,
+          // ...styles.rateIcon,
         }}
       />
       <Image
@@ -51,7 +51,7 @@ const Rating = ({
         style={{
           tintColor: rating >= 5 ? activeColor : inActiveColor,
           ...iconStyle,
-          ...styles.rateIcon,
+          // ...styles.rateIcon,
         }}
       />
       <Text
