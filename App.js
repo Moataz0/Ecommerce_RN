@@ -7,10 +7,10 @@
  */
 
 import React from 'react';
-import {icons, SIZES} from './constants';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import {Checkout, Home, Payment, ProductDetail} from './screens';
+import { icons, SIZES } from './constants';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { Address, Checkout, Home, Payment, ProductDetail } from './screens';
 import Tabs from './navigation/tabs';
 import LivingRoom from './screens/LivingRoom';
 
@@ -45,6 +45,7 @@ const RootStack = () => {
       <Stack.Screen name="ProductDetail" component={ProductDetail} />
       <Stack.Screen name="Payment" component={Payment} />
       <Stack.Screen name="Checkout" component={Checkout} />
+      <Stack.Screen name="Address" component={Address} />
     </Stack.Navigator>
   );
 };

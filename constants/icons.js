@@ -108,14 +108,11 @@ export default {
   favourite,
   fb,
   google,
-
   clock,
   correct,
-
   love,
   map,
   mastercard,
-
   home,
   location,
   location1,
