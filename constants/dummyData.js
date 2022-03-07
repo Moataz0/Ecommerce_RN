@@ -169,6 +169,36 @@ const filterItems = [
   },
 ];
 
+const relatedItems = [
+  {
+    id: 1,
+    image: require('../assets/images/item1.png'),
+    title: 'Beautiful Couch',
+    description: 'Slakol sleeves short dress with three attractive colors',
+    price: 50.0,
+  },
+  {
+    id: 2,
+    image: require('../assets/images/item2.png'),
+    title: 'Beautiful Couch',
+    description: 'Slakol sleeves short dress with three attractive colors',
+    price: 60.0,
+  },
+  {
+    id: 3,
+    image: require('../assets/images/banner3.jpg'),
+    title: 'Beautiful Couch',
+    description: 'Slakol sleeves short dress with three attractive colors',
+    price: 70.0,
+  },
+  {
+    id: 4,
+    image: require('../assets/images/banner1.jpg'),
+    title: 'Beautiful Couch',
+    description: 'Slakol sleeves short dress with three attractive colors',
+    price: 90.0,
+  },
+];
 const more = {
   about_us: 'About Us',
   settings: 'Settings',
@@ -188,4 +218,5 @@ export default {
   cart,
   more,
   myAccount,
+  relatedItems,
 };

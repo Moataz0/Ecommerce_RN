@@ -130,7 +130,7 @@ const Cart = ({navigation}) => {
       <FooterTotal
         subTotal={50.0}
         total={50.0}
-        onPress={() => console.log('Continue to checkout')}
+        onPress={() => navigation.navigate('Checkout')}
       />
     </View>
   );

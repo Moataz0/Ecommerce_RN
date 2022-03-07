@@ -7,21 +7,10 @@
  */
 
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  Image,
-  View,
-} from 'react-native';
-import Header from './component/Header';
 import {icons, SIZES} from './constants';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {Home, ProductDetail} from './screens';
+import {Checkout, Home, Payment, ProductDetail} from './screens';
 import Tabs from './navigation/tabs';
 import LivingRoom from './screens/LivingRoom';
 
@@ -32,7 +21,17 @@ const App = () => {
     </NavigationContainer>
   );
 };
+const getTabBarVisibility = route => {
+  const routeName = route.state
+    ? route.state.routes[route.state.index].name
+    : '';
 
+  if (routeName === 'ProductDetail') {
+    return false;
+  }
+
+  return true;
+};
 const Stack = createStackNavigator();
 const RootStack = () => {
   return (
@@ -44,6 +43,8 @@ const RootStack = () => {
       <Stack.Screen name="Tabs" component={Tabs} />
       <Stack.Screen name="LivingRoom" component={LivingRoom} />
       <Stack.Screen name="ProductDetail" component={ProductDetail} />
+      <Stack.Screen name="Payment" component={Payment} />
+      <Stack.Screen name="Checkout" component={Checkout} />
     </Stack.Navigator>
   );
 };

@@ -5,3 +5,6 @@ export {default as Cart} from './Cart';
 export {default as Favourite} from './Favourite';
 export {default as FilterModal} from './FilterModal';
 export {default as ProductDetail} from './ProductDetail';
+export {default as Payment} from './Payment';
+export {default as Address} from './Address';
+export {default as Checkout} from './Checkout';

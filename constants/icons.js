@@ -60,8 +60,18 @@ const heart = require('../assets/icons/heart2.png');
 const category = require('../assets/icons/Category.png');
 const discount2 = require('../assets/icons/discount2.png');
 const check = require('../assets/icons/check.png');
+const bag = require('../assets/icons/bag.png');
+const ecommerce = require('../assets/icons/ecommerce.png');
+const time_circle = require('../assets/icons/time_circle.png');
+const addCircle = require('../assets/icons/add-circle.png');
+const box = require('../assets/icons/box.png');
 
 export default {
+  box,
+  addCircle,
+  time_circle,
+  ecommerce,
+  bag,
   check,
   discount2,
   category,

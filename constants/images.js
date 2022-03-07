@@ -6,6 +6,8 @@ const slider5 = require('../assets/images/banner5.jpg');
 const slider6 = require('../assets/images/banner6.jpg');
 const offer = require('../assets/images/offer.png');
 const myPhoto = require('../assets/images/photo.jpg');
+const item1 = require('../assets/images/item1.png');
+const item2 = require('../assets/images/item2.png');
 
 export default {
   slider1,
@@ -16,4 +18,6 @@ export default {
   slider6,
   offer,
   myPhoto,
+  item1,
+  item2,
 };

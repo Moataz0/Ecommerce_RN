@@ -5,16 +5,25 @@ import {
   Text,
   Image,
   TouchableOpacity,
+  Platform,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {COLORS, dummyData, FONTS, icons, SIZES} from '../constants';
 import {SliderBox} from 'react-native-image-slider-box';
-import {Header, HorizontalItems, IconButton, Rating} from '../component';
+import {
+  FormInput,
+  Header,
+  HorizontalItems,
+  IconButton,
+  Rating,
+  TextButton,
+} from '../component';
 import {FlatList, ScrollView} from 'react-native-gesture-handler';
-
+import LinearGradient from 'react-native-linear-gradient';
 const {width, height} = Dimensions.get('window');
 
 const ProductDetail = ({route, navigation}) => {
+  const [relatedItems, setRelatedItems] = useState(dummyData.relatedItems);
   const {itemId, itemName, itemImage, itemPrice, itemRating, itemDesc} =
     route.params;
   const images = [
@@ -23,6 +32,24 @@ const ProductDetail = ({route, navigation}) => {
     require('../assets/images/3.jpg'),
     require('../assets/images/4.jpg'),
     require('../assets/images/5.jpg'),
+  ];
+  const imageItems = [
+    {
+      id: 1,
+      image: require('../assets/images/Group1.png'),
+    },
+    {
+      id: 2,
+      image: require('../assets/images/Group2.png'),
+    },
+    {
+      id: 3,
+      image: require('../assets/images/Group3.png'),
+    },
+    {
+      id: 4,
+      image: require('../assets/images/Group4.png'),
+    },
   ];
 
   function renderHeader() {
@@ -52,7 +79,7 @@ const ProductDetail = ({route, navigation}) => {
   function renderImageItems() {
     return (
       <FlatList
-        data={dummyData.bestSelling}
+        data={imageItems}
         keyExtractor={item => item.id}
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -64,13 +91,33 @@ const ProductDetail = ({route, navigation}) => {
               alignItems: 'center',
               marginVertical: SIZES.md,
               backgroundColor: COLORS.primary,
-              height: 70,
-              width: 70,
               marginLeft: index == 0 ? SIZES.lg : SIZES.md,
-              marginRight:
-                index == dummyData.category.length - 1 ? SIZES.lg : 0,
-              paddingHorizontal: SIZES.md,
-              borderRadius: SIZES.sm,
+              marginRight: index == imageItems.length - 1 ? SIZES.lg : 0,
+            }}>
+            <Image source={item.image} style={{height: 70, width: 70}} />
+          </TouchableOpacity>
+        )}
+      />
+    );
+  }
+  function renderRelatedItems() {
+    return (
+      <FlatList
+        data={relatedItems}
+        keyExtractor={item => item.id}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        renderItem={({item, index}) => (
+          <HorizontalItems
+            containerStyle={{
+              height: 60,
+              width: SIZES.width * 0.66,
+              marginLeft: index == 0 ? SIZES.lg : SIZES.md,
+              marginRight: index == relatedItems.length - 1 ? SIZES.lg : 0,
+              paddingRight: SIZES.sm,
+              alignItems: 'center',
+              marginTop: SIZES.md,
+              backgroundColor: COLORS.primary,
               shadowColor: '#000',
               shadowOffset: {
                 width: 0,
@@ -79,11 +126,113 @@ const ProductDetail = ({route, navigation}) => {
               shadowOpacity: 0.27,
               shadowRadius: 4.65,
               elevation: 6,
-            }}>
-            <Image source={item.image} style={{height: 50, width: 50}} />
-          </TouchableOpacity>
+            }}
+            imageStyle={{
+              marginHorizontal: 10,
+              borderRadius: SIZES.sm,
+              height: 50,
+              width: 60,
+            }}
+            item={item}
+            onPress={() => console.log('related items')}
+          />
         )}
+        ListFooterComponent={<View style={{height: 100}} />}
       />
+    );
+  }
+
+  function renderFooter() {
+    return (
+      <View>
+        <LinearGradient
+          start={{x: 0, y: 0}}
+          end={{x: 0, y: 1}}
+          colors={[COLORS.transparent, COLORS.lightGray2]}
+          style={{
+            position: 'absolute',
+            top: -15,
+            left: 0,
+            right: 0,
+            height: Platform.OS === 'android' ? 120 : 200,
+            borderTopLeftRadius: 15,
+            borderTopRightRadius: 15,
+          }}
+        />
+        <View
+          style={{
+            flexDirection: 'row',
+            marginVertical: 20,
+          }}>
+          <IconButton
+            icon={icons.heart}
+            containerStyle={{
+              width: 40,
+              height: 40,
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderWidth: 2,
+              borderRadius: SIZES.sm,
+              borderColor: COLORS.lightGray1,
+              marginLeft: SIZES.lg,
+            }}
+            iconStyle={{
+              height: 20,
+              width: 20,
+              tintColor: COLORS.lightGray1,
+            }}
+            onPress={() => console.log('Like')}
+          />
+          <TextButton
+            buttonContainerStyle={{
+              // flex: 1,
+              flexDirection: 'row',
+              paddingHorizontal: SIZES.sm,
+              borderRadius: SIZES.sm,
+              backgroundColor: COLORS.red,
+              width: 120,
+              height: 40,
+              marginHorizontal: SIZES.md,
+            }}
+            label="Add To Cart"
+            labelStyle={{
+              fontSize: 14,
+            }}
+            label2={
+              <Image
+                source={icons.bag}
+                style={{
+                  height: 15,
+                  width: 15,
+                  tintColor: COLORS.primary,
+                }}
+              />
+            }
+            onPress={() => console.log('add to cart')}
+          />
+          <TextButton
+            buttonContainerStyle={{
+              paddingHorizontal: SIZES.sm,
+              flexDirection: 'row',
+              borderRadius: SIZES.sm,
+              backgroundColor: COLORS.transparent,
+              borderColor: COLORS.red,
+              borderWidth: 1,
+              width: 120,
+              height: 40,
+              marginRight: SIZES.lg,
+            }}
+            labelStyle={{
+              color: COLORS.red,
+            }}
+            label="Buy Now"
+            label2={
+              <Image source={icons.ecommerce} style={{height: 15, width: 15}} />
+            }
+            onPress={() => console.log('add to cart')}
+          />
+        </View>
+      </View>
     );
   }
   return (
@@ -123,13 +272,6 @@ const ProductDetail = ({route, navigation}) => {
             margin: 0,
             backgroundColor: COLORS.red,
           }}
-          ImageComponentStyle={
-            {
-              //   borderRadius: 4,
-              // marginTop: SIZES.lg,
-              //   width: width - 35,
-            }
-          }
           imageLoadingColor="#2196F3"
         />
         <View
@@ -164,13 +306,55 @@ const ProductDetail = ({route, navigation}) => {
         </Text>
         {renderImageItems()}
 
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}>
+          <FormInput
+            onChange={text => console.log(text)}
+            inputContainerStyle={{
+              marginTop: 0,
+              width: 200,
+              height: 40,
+              marginHorizontal: SIZES.lg,
+              marginVertical: SIZES.xl,
+              borderWidth: 1,
+              borderColor: COLORS.lightGray1,
+              backgroundColor: COLORS.primary,
+              overflow: 'hidden',
+            }}
+            placeHolder="1"
+          />
+          <Text
+            style={{
+              color: COLORS.red,
+              ...FONTS.h2,
+              marginRight: SIZES.lg,
+              marginBottom: 12,
+            }}>
+            ${itemPrice.toFixed(2)}
+          </Text>
+        </View>
         {/* Related Items */}
-        <HorizontalItems />
+        <View style={{flex: 1}}>
+          <Text
+            style={{
+              ...FONTS.h2,
+              color: COLORS.black,
+              paddingLeft: SIZES.lg,
+              fontWeight: 'bold',
+            }}>
+            Related Items
+          </Text>
+        </View>
+        {renderRelatedItems()}
       </ScrollView>
+      {/* RenderFooter */}
+      {renderFooter()}
     </View>
   );
 };
 
 export default ProductDetail;
-
-const styles = StyleSheet.create({});
