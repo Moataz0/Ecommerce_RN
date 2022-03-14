@@ -1,10 +1,10 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import { Header, IconButton } from '../component';
-import { COLORS, FONTS, icons, SIZES } from '../constants';
-import { ScrollView } from 'react-native-gesture-handler';
+import {Header, IconButton} from '../component';
+import {COLORS, FONTS, icons, SIZES} from '../constants';
+import {ScrollView} from 'react-native-gesture-handler';
 
-const Checkout = ({ navigation }) => {
+const Checkout = ({navigation}) => {
   function renderHeader() {
     return (
       <Header
@@ -21,7 +21,7 @@ const Checkout = ({ navigation }) => {
               height: 50,
               justifyContent: 'center',
               alignItems: 'center',
-              transform: [{ scaleX: -1 }],
+              transform: [{scaleX: -1}],
             }}
             onPress={() => navigation.navigate('Home')}
           />
@@ -65,12 +65,12 @@ const Checkout = ({ navigation }) => {
               }}
             />
           )}
-          <Text style={{ ...FONTS.h3, color: COLORS.black, ...leftStyle }}>
+          <Text style={{...FONTS.h3, color: COLORS.black, ...leftStyle}}>
             {leftTitle}
           </Text>
         </View>
 
-        <Text style={{ ...FONTS.h3, color: COLORS.black, ...rightStyle }}>
+        <Text style={{...FONTS.h3, color: COLORS.black, ...rightStyle}}>
           {rightTitle}
         </Text>
       </TouchableOpacity>
@@ -79,9 +79,14 @@ const Checkout = ({ navigation }) => {
   return (
     <View>
       {renderHeader()}
-      <ScrollView>
-        <View style={{ marginHorizontal: SIZES.lg, marginTop: SIZES.xxl }}>
-          <Text style={{ ...FONTS.h3, color: COLORS.black, fontWeight: 'bold' }}>
+      <ScrollView
+        contentContainerStyle={{
+          flexGrow: 1,
+          // marginTop:SIZES.sm,
+          // paddingHorizontal:SIZES.sm
+        }}>
+        <View style={{marginHorizontal: SIZES.md, marginTop: SIZES.xxl}}>
+          <Text style={{...FONTS.h3, color: COLORS.black, fontWeight: 'bold'}}>
             Delivery Information
           </Text>
         </View>
@@ -98,12 +103,12 @@ const Checkout = ({ navigation }) => {
           rightStyle={{
             color: COLORS.red,
           }}
-          leftStyle={{ marginLeft: SIZES.md }}
+          leftStyle={{marginLeft: SIZES.md}}
           withImage={true}
           icon={icons.time_circle}
         />
         <TouchableOpacity
-          onPress={() => navigation.navigate("Address")}
+          onPress={() => navigation.navigate('Address')}
           style={{
             flexDirection: 'row',
             marginHorizontal: SIZES.xxl * 2,
@@ -111,7 +116,12 @@ const Checkout = ({ navigation }) => {
             marginTop: SIZES.sm,
           }}>
           <Image source={icons.addCircle} />
-          <Text style={{ color: COLORS.red, marginLeft: SIZES.sm }}>
+          <Text
+            style={{
+              color: COLORS.red,
+              marginLeft: SIZES.sm,
+              fontWeight: '600',
+            }}>
             Add New Address
           </Text>
         </TouchableOpacity>
@@ -128,15 +138,47 @@ const Checkout = ({ navigation }) => {
           rightStyle={{
             color: COLORS.red,
           }}
-          leftStyle={{ marginLeft: SIZES.md }}
+          leftStyle={{marginLeft: SIZES.md}}
           withImage={true}
           icon={icons.box}
-          iconStyle={{ height: 15, width: 15 }}
+          iconStyle={{height: 15, width: 15}}
         />
-        <View style={{ marginHorizontal: SIZES.lg, marginTop: SIZES.md }}>
-          <Text style={{ ...FONTS.h3, color: COLORS.black, fontWeight: 'bold' }}>
+        <View style={{marginHorizontal: SIZES.lg, marginTop: SIZES.md}}>
+          <Text style={{...FONTS.h3, color: COLORS.black, fontWeight: 'bold'}}>
             Payment Method
           </Text>
+        </View>
+        <View
+          style={{
+            borderWidth: 1,
+            flexGrow: 1,
+            borderColor: COLORS.gray,
+            marginHorizontal: SIZES.md,
+            justifyContent: 'center',
+            marginVertical: SIZES.md,
+            padding: SIZES.sm,
+          }}>
+          <TouchableOpacity
+            style={{
+              flex: 1,
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              paddingHorizontal: SIZES.md,
+            }}>
+            <View style={{flexDirection: 'row'}}>
+              <Image source={icons.check_off} style={{width: 20, height: 20}} />
+              <Text
+                style={{...FONTS.h4, color: COLORS.gray, marginLeft: SIZES.md}}>
+                234235235226262
+              </Text>
+            </View>
+            <Image
+              source={icons.visa}
+              style={{width: 35, height: 35}}
+              resizeMode="center"
+            />
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </View>
