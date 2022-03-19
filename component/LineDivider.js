@@ -1,16 +1,16 @@
-import { Dimensions, View } from 'react-native';
+import {Dimensions, View} from 'react-native';
 import React from 'react';
-import { COLORS } from '../constants';
+import {COLORS} from '../constants';
 
-const { width } = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
-const LineDivider = ({ lineStyle }) => {
+const LineDivider = ({lineStyle}) => {
   return (
     <View
       style={{
-        height: 0.5,
+        height: 1,
         width: width,
-        backgroundColor: COLORS.gray2,
+        backgroundColor: COLORS.gray3,
         ...lineStyle,
       }}
     />

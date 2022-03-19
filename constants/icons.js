@@ -65,8 +65,12 @@ const ecommerce = require('../assets/icons/ecommerce.png');
 const time_circle = require('../assets/icons/time_circle.png');
 const addCircle = require('../assets/icons/add-circle.png');
 const box = require('../assets/icons/box.png');
+const finance = require('../assets/icons/finance.png');
+const information = require('../assets/icons/information.png');
 
 export default {
+  information,
+  finance,
   box,
   addCircle,
   time_circle,

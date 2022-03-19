@@ -4,7 +4,13 @@ import {COLORS, FONTS, icons, SIZES} from '../constants';
 import TextButton from './TextButton';
 import {IconButton} from '.';
 
-const CartItems = ({containerStyle, imageStyle, item, onPress}) => {
+const CartItems = ({
+  containerStyle,
+  imageStyle,
+  item,
+  onPress,
+  inCart = false,
+}) => {
   return (
     <View
       style={{
@@ -26,27 +32,28 @@ const CartItems = ({containerStyle, imageStyle, item, onPress}) => {
       <View style={{flex: 1}}>
         {/* Image */}
         <Image source={item.image} style={imageStyle} resizeMode="contain" />
-
-        <View style={{marginHorizontal: SIZES.xxl, marginVertical: 4}}>
-          <IconButton
-            icon={icons.heart}
-            containerStyle={{
-              width: 40,
-              height: 40,
-              justifyContent: 'center',
-              alignItems: 'center',
-              borderWidth: 2,
-              borderRadius: SIZES.sm,
-              borderColor: COLORS.lightGray1,
-            }}
-            iconStyle={{
-              height: 20,
-              width: 20,
-              tintColor: COLORS.lightGray1,
-            }}
-            onPress={() => console.log('Like')}
-          />
-        </View>
+        {inCart && (
+          <View style={{marginHorizontal: SIZES.xxl, marginVertical: 4}}>
+            <IconButton
+              icon={icons.heart}
+              containerStyle={{
+                width: 40,
+                height: 40,
+                justifyContent: 'center',
+                alignItems: 'center',
+                borderWidth: 2,
+                borderRadius: SIZES.sm,
+                borderColor: COLORS.lightGray1,
+              }}
+              iconStyle={{
+                height: 20,
+                width: 20,
+                tintColor: COLORS.lightGray1,
+              }}
+              onPress={onPress}
+            />
+          </View>
+        )}
       </View>
       <View style={{flex: 1}}>
         <Text
@@ -76,7 +83,6 @@ const CartItems = ({containerStyle, imageStyle, item, onPress}) => {
           }}>
           {item.description.substring(0, 100) + ' ...'}
         </Text>
-
         <View
           style={{
             flexDirection: 'row',
@@ -89,21 +95,24 @@ const CartItems = ({containerStyle, imageStyle, item, onPress}) => {
             style={{width: 20, height: 20, tintColor: COLORS.gray}}
           />
         </View>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: 'row',
-            paddingTop: SIZES.lg,
-            justifyContent: 'center',
-            alignItems: 'center',
-            paddingRight: SIZES.lg,
-            // marginLeft: -SIZES.xl,
-          }}>
-          <TextInput
-            placeholder="item"
-            style={{borderWidth: 1, width: 150, padding: 2}}
-          />
-        </View>
+
+        {inCart && (
+          <View
+            style={{
+              flex: 1,
+              flexDirection: 'row',
+              paddingTop: SIZES.lg,
+              justifyContent: 'center',
+              alignItems: 'center',
+              paddingRight: SIZES.lg,
+              // marginLeft: -SIZES.xl,
+            }}>
+            <TextInput
+              placeholder="item"
+              style={{borderWidth: 1, width: 150, padding: 2}}
+            />
+          </View>
+        )}
       </View>
     </View>
   );

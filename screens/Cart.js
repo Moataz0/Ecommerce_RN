@@ -48,6 +48,7 @@ const Cart = ({navigation}) => {
           renderItem={({item, i}) => {
             return (
               <CartItems
+                inCart={true}
                 imageStyle={{
                   marginBottom: 20,
                   marginHorizontal: SIZES.sm,
