@@ -5,6 +5,7 @@ import {COLORS, FONTS, SIZES} from '../constants';
 const FormInput = ({
   containerStyle,
   label,
+  labelStyle,
   inputContainerStyle,
   inputStyle,
   placeHolder,
@@ -23,7 +24,9 @@ const FormInput = ({
     <View style={{...containerStyle}}>
       {/* Label and error message */}
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-        <Text style={{color: COLORS.gray, ...FONTS.body4}}>{label}</Text>
+        <Text style={{color: COLORS.gray, ...FONTS.body4, ...labelStyle}}>
+          {label}
+        </Text>
         <Text style={{color: COLORS.red, ...FONTS.body4}}>{errorMsg}</Text>
       </View>
 

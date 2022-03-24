@@ -175,7 +175,16 @@ const Home = ({navigation}) => {
                 marginVertical: SIZES.md,
               }}
               item={item}
-              onPress={() => console.log('Vertical items')}
+              onPress={() =>
+                navigation.navigate('ItemDetails', {
+                  itemId: item.id,
+                  itemName: item.title,
+                  itemImage: item.image,
+                  itemPrice: item.price,
+                  itemRating: item.rating.rate,
+                  itemDesc: item.description,
+                })
+              }
             />
           )}
         />

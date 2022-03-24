@@ -1,4 +1,4 @@
-import {FlatList, StyleSheet, Text, View} from 'react-native';
+import {FlatList, ScrollView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {
   CartItems,
@@ -39,35 +39,33 @@ const Cart = ({navigation}) => {
 
   function renderCartItems() {
     return (
-      <View>
-        <FlatList
-          style={{paddingTop: SIZES.sm}}
-          data={dummyData.cart}
-          keyExtractor={item => item.id}
-          showsVerticalScrollIndicator={false}
-          renderItem={({item, i}) => {
-            return (
-              <CartItems
-                inCart={true}
-                imageStyle={{
-                  marginBottom: 20,
-                  marginHorizontal: SIZES.sm,
-                  height: 120,
-                  width: 120,
-                }}
-                containerStyle={{
-                  alignItems: 'center',
-                  marginHorizontal: SIZES.lg,
-                  paddingVertical: SIZES.md,
-                  marginBottom: SIZES.lg,
-                }}
-                onPress={() => navigation.navigate('Cart')}
-                item={item}
-              />
-            );
-          }}
-        />
-      </View>
+      <FlatList
+        style={{paddingTop: SIZES.sm}}
+        data={dummyData.cart}
+        keyExtractor={item => item.id}
+        showsVerticalScrollIndicator={false}
+        renderItem={({item, i}) => {
+          return (
+            <CartItems
+              inCart={true}
+              imageStyle={{
+                marginBottom: 20,
+                marginHorizontal: SIZES.sm,
+                height: 120,
+                width: 120,
+              }}
+              containerStyle={{
+                alignItems: 'center',
+                marginHorizontal: SIZES.lg,
+                paddingVertical: SIZES.md,
+                marginBottom: SIZES.lg,
+              }}
+              onPress={() => navigation.navigate('Cart')}
+              item={item}
+            />
+          );
+        }}
+      />
     );
   }
   function renderDiscountCoupon() {

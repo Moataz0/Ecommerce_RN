@@ -23,7 +23,7 @@ const TextButton = ({
       {label2 != '' && (
         <Text
           style={{
-            flex: 1,
+            // flex: 1,
             textAlign: 'left',
             color: COLORS.primary,
             ...FONTS.h3,

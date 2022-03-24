@@ -1,22 +1,16 @@
-import {
-  KeyboardAvoidingViewBase,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
-import React from 'react';
+import {ScrollView, Switch, Text, View} from 'react-native';
+import React, {useState} from 'react';
 import {COLORS, FONTS, icons, SIZES} from '../constants';
 import {Header, IconButton, TextButton, FormInput} from '../component';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
-const Address = ({navigation}) => {
+const AddCard = ({navigation}) => {
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   function renderHeader() {
     return (
       <Header
-        title="Address"
+        title="Payment"
         containerStyle={{
           height: 50,
           marginHorizontal: SIZES.lg,
@@ -47,7 +41,7 @@ const Address = ({navigation}) => {
         }}>
         <Text
           style={{...FONTS.h3, color: COLORS.black, marginBottom: SIZES.md}}>
-          Add New Address
+          Add New Card
         </Text>
 
         <View
@@ -61,8 +55,8 @@ const Address = ({navigation}) => {
             labelStyle={{
               marginBottom: 4,
             }}
-            label="Address"
-            placeHolder="Add new address"
+            label="Account Number"
+            placeHolder="xxxx xxxx xxxx 3463"
             containerStyle={{
               marginTop: SIZES.sm,
             }}
@@ -76,8 +70,8 @@ const Address = ({navigation}) => {
             labelStyle={{
               marginBottom: 4,
             }}
-            label="Street"
-            placeHolder="Abass el akaad"
+            label="Carddholder Name"
+            placeHolder="Moataz Muhammed"
             containerStyle={{
               marginTop: SIZES.sm,
             }}
@@ -87,21 +81,7 @@ const Address = ({navigation}) => {
               borderWidth: 1,
             }}
           />
-          <FormInput
-            labelStyle={{
-              marginBottom: 4,
-            }}
-            label="City"
-            placeHolder="Cairo"
-            containerStyle={{
-              marginTop: SIZES.sm,
-            }}
-            inputContainerStyle={{
-              backgroundColor: COLORS.primary,
-              borderColor: COLORS.lightGray3,
-              borderWidth: 1,
-            }}
-          />
+
           <View
             style={{
               flexDirection: 'row',
@@ -111,8 +91,8 @@ const Address = ({navigation}) => {
               labelStyle={{
                 marginBottom: 4,
               }}
-              label="State"
-              placeHolder="Nasr city"
+              label="Expiry"
+              placeHolder="Month / Year"
               containerStyle={{
                 flex: 1,
               }}
@@ -127,8 +107,10 @@ const Address = ({navigation}) => {
               labelStyle={{
                 marginBottom: 4,
               }}
-              label="Zip Code"
-              placeHolder="111"
+              secureTextEntry={true}
+              onChange={e => console.log(e)}
+              label="CVV"
+              autoCompleteType="password"
               inputContainerStyle={{
                 backgroundColor: COLORS.primary,
                 borderColor: COLORS.lightGray3,
@@ -139,6 +121,23 @@ const Address = ({navigation}) => {
                 marginLeft: SIZES.md,
               }}
             />
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Switch
+              trackColor={{false: '#767577', true: COLORS.lightGray3}}
+              thumbColor={isEnabled ? COLORS.red : '#f4f3f4'}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={toggleSwitch}
+              value={isEnabled}
+            />
+            <Text style={{...FONTS.h5, color: COLORS.black}}>
+              Save card information for nex payment
+            </Text>
           </View>
         </View>
       </View>
@@ -157,7 +156,7 @@ const Address = ({navigation}) => {
             borderRadius: 4,
             backgroundColor: COLORS.red,
           }}
-          label="Save Address"
+          label="Save Card"
           onPress={() => console.log('Complete')}
         />
       </View>
@@ -186,6 +185,4 @@ const Address = ({navigation}) => {
   );
 };
 
-export default Address;
-
-const styles = StyleSheet.create({});
+export default AddCard;

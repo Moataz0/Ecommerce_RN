@@ -7,10 +7,19 @@
  */
 
 import React from 'react';
-import { icons, SIZES } from './constants';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { Address, Checkout, Home, Payment, ProductDetail } from './screens';
+import {icons, SIZES} from './constants';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {
+  Address,
+  Checkout,
+  Home,
+  AddCard,
+  ProductDetail,
+  Success,
+  SignIn,
+  ItemDetails,
+} from './screens';
 import Tabs from './navigation/tabs';
 import LivingRoom from './screens/LivingRoom';
 
@@ -43,9 +52,12 @@ const RootStack = () => {
       <Stack.Screen name="Tabs" component={Tabs} />
       <Stack.Screen name="LivingRoom" component={LivingRoom} />
       <Stack.Screen name="ProductDetail" component={ProductDetail} />
-      <Stack.Screen name="Payment" component={Payment} />
+      <Stack.Screen name="AddCard" component={AddCard} />
       <Stack.Screen name="Checkout" component={Checkout} />
       <Stack.Screen name="Address" component={Address} />
+      <Stack.Screen name="Success" component={Success} />
+      <Stack.Screen name="SignIn" component={SignIn} />
+      <Stack.Screen name="ItemDetails" component={ItemDetails} />
     </Stack.Navigator>
   );
 };
