@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import {icons, SIZES} from './constants';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import { icons, SIZES } from './constants';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import {
   Address,
   Checkout,
@@ -48,7 +48,10 @@ const RootStack = () => {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName={'Home'}>
+      // initialRouteName={'Home'}
+      initialRouteName={'SignIn'}
+
+    >
       <Stack.Screen name="Tabs" component={Tabs} />
       <Stack.Screen name="LivingRoom" component={LivingRoom} />
       <Stack.Screen name="ProductDetail" component={ProductDetail} />
