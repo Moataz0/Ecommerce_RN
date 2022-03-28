@@ -8,8 +8,10 @@ const offer = require('../assets/images/offer.png');
 const myPhoto = require('../assets/images/photo.jpg');
 const item1 = require('../assets/images/item1.png');
 const item2 = require('../assets/images/item2.png');
+const logo = require('../assets/images/logo.jpg');
 
 export default {
+  logo,
   slider1,
   slider2,
   slider3,

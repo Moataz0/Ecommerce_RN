@@ -19,6 +19,7 @@ import {
   Success,
   SignIn,
   ItemDetails,
+  SignUp,
 } from './screens';
 import Tabs from './navigation/tabs';
 import LivingRoom from './screens/LivingRoom';
@@ -53,6 +54,7 @@ const RootStack = () => {
 
     >
       <Stack.Screen name="Tabs" component={Tabs} />
+      <Stack.Screen name="Home" component={Tabs} />
       <Stack.Screen name="LivingRoom" component={LivingRoom} />
       <Stack.Screen name="ProductDetail" component={ProductDetail} />
       <Stack.Screen name="AddCard" component={AddCard} />
@@ -60,6 +62,7 @@ const RootStack = () => {
       <Stack.Screen name="Address" component={Address} />
       <Stack.Screen name="Success" component={Success} />
       <Stack.Screen name="SignIn" component={SignIn} />
+      <Stack.Screen name="SignUp" component={SignUp} />
       <Stack.Screen name="ItemDetails" component={ItemDetails} />
     </Stack.Navigator>
   );

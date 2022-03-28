@@ -1,10 +1,10 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
-import {Header, IconButton, TextButton} from '../component';
-import {COLORS, FONTS, icons, SIZES} from '../constants';
+import { Header, IconButton, TextButton } from '../component';
+import { COLORS, FONTS, icons, SIZES } from '../constants';
 import LottieView from 'lottie-react-native';
 
-const Success = ({navigation}) => {
+const Success = ({ navigation }) => {
   function renderHeader() {
     return (
       <Header
@@ -21,7 +21,7 @@ const Success = ({navigation}) => {
               height: 50,
               justifyContent: 'center',
               alignItems: 'center',
-              transform: [{scaleX: -1}],
+              transform: [{ scaleX: -1 }],
             }}
             onPress={() => navigation.navigate('Home')}
           />
@@ -62,10 +62,10 @@ const Success = ({navigation}) => {
     );
   }
   return (
-    <View style={{flex: 1, backgroundColor: COLORS.primary}}>
+    <View style={{ flex: 1, backgroundColor: COLORS.primary }}>
       <LottieView
         source={require('./Animations/success.json')}
-        style={{marginBottom: SIZES.xxl * 3}}
+        style={{ marginBottom: SIZES.xxl * 3 }}
         autoPlay
       />
       {renderHeader()}
@@ -76,7 +76,7 @@ const Success = ({navigation}) => {
           alignItems: 'center',
         }}>
         <Text
-          style={{...FONTS.body2, color: COLORS.red, marginTop: SIZES.xxl * 3}}>
+          style={{ ...FONTS.body2, color: COLORS.red, marginTop: SIZES.xxl * 5 }}>
           Order Success !
         </Text>
         <View

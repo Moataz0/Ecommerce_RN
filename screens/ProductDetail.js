@@ -183,6 +183,7 @@ const ProductDetail = ({ route, navigation }) => {
               width: 20,
               tintColor: COLORS.lightGray1,
             }}
+
             onPress={() => console.log('Like')}
           />
           <TextButton
@@ -198,6 +199,7 @@ const ProductDetail = ({ route, navigation }) => {
             label="Add To Cart"
             labelStyle={{
               fontSize: 14,
+              marginHorizontal: SIZES.md,
             }}
             label2={
               <Image
@@ -225,6 +227,8 @@ const ProductDetail = ({ route, navigation }) => {
             }}
             labelStyle={{
               color: COLORS.red,
+              marginHorizontal: SIZES.md,
+
             }}
             label="Buy Now"
             label2={
