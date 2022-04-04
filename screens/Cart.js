@@ -1,4 +1,4 @@
-import {FlatList, ScrollView, StyleSheet, Text, View} from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import {
   CartItems,
@@ -8,10 +8,10 @@ import {
   IconButton,
   TextButton,
 } from '../component';
-import {COLORS, dummyData, FONTS, icons, SIZES} from '../constants';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import { COLORS, dummyData, FONTS, icons, SIZES } from '../constants';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-const Cart = ({navigation}) => {
+const Cart = ({ navigation }) => {
   function renderHeader() {
     return (
       <Header
@@ -28,7 +28,7 @@ const Cart = ({navigation}) => {
               height: 50,
               justifyContent: 'center',
               alignItems: 'center',
-              transform: [{scaleX: -1}],
+              transform: [{ scaleX: -1 }],
             }}
             onPress={() => navigation.goBack()}
           />
@@ -40,11 +40,11 @@ const Cart = ({navigation}) => {
   function renderCartItems() {
     return (
       <FlatList
-        style={{paddingTop: SIZES.sm}}
+        style={{ paddingTop: SIZES.sm }}
         data={dummyData.cart}
         keyExtractor={item => item.id}
         showsVerticalScrollIndicator={false}
-        renderItem={({item, i}) => {
+        renderItem={({ item, i }) => {
           return (
             <CartItems
               inCart={true}
@@ -70,7 +70,7 @@ const Cart = ({navigation}) => {
   }
   function renderDiscountCoupon() {
     return (
-      <View style={{marginTop: SIZES.lg, marginBottom: 10}}>
+      <View style={{ marginTop: SIZES.lg, marginBottom: 10 }}>
         <Text
           style={{
             ...FONTS.h3,
