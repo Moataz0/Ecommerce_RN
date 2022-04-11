@@ -8,11 +8,11 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import { Header, IconButton, TextButton, TowColumns } from '../component';
-import { COLORS, FONTS, icons, images, SIZES } from '../constants';
+import {Header, IconButton, TextButton, TowColumns} from '../component';
+import {COLORS, FONTS, icons, images, SIZES} from '../constants';
 
-const ItemDetails = ({ route, navigation }) => {
-  const { itemId, itemName, itemImage, itemPrice, itemRating, itemDesc } =
+const ItemDetails = ({route, navigation}) => {
+  const {itemId, itemName, itemImage, itemPrice, itemRating, itemDesc} =
     route.params;
 
   function renderFooter() {
@@ -22,10 +22,9 @@ const ItemDetails = ({ route, navigation }) => {
           flex: 1,
           flexDirection: 'row',
           paddingTop: SIZES.xxl,
-          justifyContent: 'space-evenly',
+          justifyContent: 'space-between',
           alignItems: 'center',
-          paddingRight: SIZES.lg,
-          marginHorizontal: SIZES.md,
+          paddingHorizontal: SIZES.md,
           marginBottom: SIZES.md,
         }}>
         <TextButton
@@ -44,12 +43,12 @@ const ItemDetails = ({ route, navigation }) => {
           label="Add To Cart"
           label2Style={{
             marginHorizontal: SIZES.lg,
-            marginBottom: SIZES.sm
+            marginBottom: SIZES.sm,
           }}
           label2={
             <Image
               source={icons.cart}
-              style={{ height: 25, width: 25, tintColor: COLORS.primary }}
+              style={{height: 25, width: 25, tintColor: COLORS.primary}}
             />
           }
           onPress={() => console.log('first')}
@@ -77,7 +76,7 @@ const ItemDetails = ({ route, navigation }) => {
   return (
     <ScrollView style={styles.flex1} showsVerticalScrollIndicator={false}>
       <View style={styles.wrapperImg}>
-        <Image source={{ uri: itemImage }} style={styles.image} />
+        <Image source={{uri: itemImage}} style={styles.image} />
         <IconButton
           icon={icons.rightArrow}
           iconStyle={{
@@ -94,14 +93,14 @@ const ItemDetails = ({ route, navigation }) => {
             paddingHorizontal: 4,
             paddingVertical: 4,
             borderRadius: 50,
-            transform: [{ scaleX: -1 }],
+            transform: [{scaleX: -1}],
           }}
           onPress={() => navigation.navigate('Home')}
         />
       </View>
       {/* Title and icon */}
       <View style={styles.content}>
-        <Text style={{ ...FONTS.h3, color: COLORS.black, flex: 1 }}>
+        <Text style={{...FONTS.h3, color: COLORS.black, flex: 1}}>
           {itemName}
         </Text>
         <IconButton
@@ -132,10 +131,10 @@ const ItemDetails = ({ route, navigation }) => {
         }}>
         ${itemPrice}
       </Text>
-      <View style={{ marginHorizontal: SIZES.md }}>
-        <Text style={{ fontSize: 12, marginTop: SIZES.sm }}>{itemDesc}</Text>
+      <View style={{marginHorizontal: SIZES.md}}>
+        <Text style={{fontSize: 12, marginTop: SIZES.sm}}>{itemDesc}</Text>
       </View>
-      <View style={{ paddingVertical: SIZES.lg }}>
+      <View style={{paddingVertical: SIZES.lg}}>
         <Text
           style={{
             ...FONTS.h2,

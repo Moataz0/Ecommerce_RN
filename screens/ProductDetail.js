@@ -7,9 +7,9 @@ import {
   TouchableOpacity,
   Platform,
 } from 'react-native';
-import React, { useState } from 'react';
-import { COLORS, dummyData, FONTS, icons, SIZES } from '../constants';
-import { SliderBox } from 'react-native-image-slider-box';
+import React, {useState} from 'react';
+import {COLORS, dummyData, FONTS, icons, SIZES} from '../constants';
+import {SliderBox} from 'react-native-image-slider-box';
 import {
   FormInput,
   Header,
@@ -18,13 +18,13 @@ import {
   Rating,
   TextButton,
 } from '../component';
-import { FlatList, ScrollView } from 'react-native-gesture-handler';
+import {FlatList, ScrollView} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
-const { width, height } = Dimensions.get('window');
+const {width, height} = Dimensions.get('window');
 
-const ProductDetail = ({ route, navigation }) => {
+const ProductDetail = ({route, navigation}) => {
   const [relatedItems, setRelatedItems] = useState(dummyData.relatedItems);
-  const { itemId, itemName, itemImage, itemPrice, itemRating, itemDesc } =
+  const {itemId, itemName, itemImage, itemPrice, itemRating, itemDesc} =
     route.params;
   const images = [
     require('../assets/images/1.jpg'),
@@ -69,7 +69,7 @@ const ProductDetail = ({ route, navigation }) => {
               height: 50,
               justifyContent: 'center',
               alignItems: 'center',
-              transform: [{ scaleX: -1 }],
+              transform: [{scaleX: -1}],
             }}
             onPress={() => navigation.goBack()}
           />
@@ -84,7 +84,7 @@ const ProductDetail = ({ route, navigation }) => {
         keyExtractor={item => item.id}
         horizontal
         showsHorizontalScrollIndicator={false}
-        renderItem={({ item, index }) => (
+        renderItem={({item, index}) => (
           <TouchableOpacity
             style={{
               flexDirection: 'column',
@@ -95,7 +95,7 @@ const ProductDetail = ({ route, navigation }) => {
               marginLeft: index == 0 ? SIZES.lg : SIZES.md,
               marginRight: index == imageItems.length - 1 ? SIZES.lg : 0,
             }}>
-            <Image source={item.image} style={{ height: 70, width: 70 }} />
+            <Image source={item.image} style={{height: 70, width: 70}} />
           </TouchableOpacity>
         )}
       />
@@ -108,7 +108,7 @@ const ProductDetail = ({ route, navigation }) => {
         keyExtractor={item => item.id}
         horizontal
         showsHorizontalScrollIndicator={false}
-        renderItem={({ item, index }) => (
+        renderItem={({item, index}) => (
           <HorizontalItems
             containerStyle={{
               height: 60,
@@ -138,7 +138,7 @@ const ProductDetail = ({ route, navigation }) => {
             onPress={() => console.log('related items')}
           />
         )}
-        ListFooterComponent={<View style={{ height: 100 }} />}
+        ListFooterComponent={<View style={{height: 100}} />}
       />
     );
   }
@@ -147,8 +147,8 @@ const ProductDetail = ({ route, navigation }) => {
     return (
       <View>
         <LinearGradient
-          start={{ x: 0, y: 0 }}
-          end={{ x: 0, y: 1 }}
+          start={{x: 0, y: 0}}
+          end={{x: 0, y: 1}}
           colors={[COLORS.transparent, COLORS.lightGray2]}
           style={{
             position: 'absolute',
@@ -164,7 +164,7 @@ const ProductDetail = ({ route, navigation }) => {
           style={{
             flexDirection: 'row',
             marginVertical: 20,
-            justifyContent: "space-around"
+            justifyContent: 'space-around',
           }}>
           <IconButton
             icon={icons.heart}
@@ -183,7 +183,6 @@ const ProductDetail = ({ route, navigation }) => {
               width: 20,
               tintColor: COLORS.lightGray1,
             }}
-
             onPress={() => console.log('Like')}
           />
           <TextButton
@@ -199,7 +198,7 @@ const ProductDetail = ({ route, navigation }) => {
             label="Add To Cart"
             labelStyle={{
               fontSize: 14,
-              marginHorizontal: SIZES.md,
+              marginHorizontal: SIZES.sm,
             }}
             label2={
               <Image
@@ -228,11 +227,10 @@ const ProductDetail = ({ route, navigation }) => {
             labelStyle={{
               color: COLORS.red,
               marginHorizontal: SIZES.md,
-
             }}
             label="Buy Now"
             label2={
-              <Image source={icons.ecommerce} style={{ height: 15, width: 15 }} />
+              <Image source={icons.ecommerce} style={{height: 15, width: 15}} />
             }
             onPress={() => console.log('add to cart')}
           />
@@ -286,7 +284,7 @@ const ProductDetail = ({ route, navigation }) => {
             paddingHorizontal: SIZES.lg,
             justifyContent: 'space-between',
           }}>
-          <Text style={{ ...FONTS.h3, color: COLORS.black }}>{itemName}</Text>
+          <Text style={{...FONTS.h3, color: COLORS.black}}>{itemName}</Text>
           <View>
             <Text
               style={{
@@ -297,7 +295,7 @@ const ProductDetail = ({ route, navigation }) => {
               }}>
               Customers Rating
             </Text>
-            <Rating rating={itemRating} iconStyle={{ height: 10, width: 10 }} />
+            <Rating rating={itemRating} iconStyle={{height: 10, width: 10}} />
           </View>
         </View>
         <Text
@@ -343,7 +341,7 @@ const ProductDetail = ({ route, navigation }) => {
           </Text>
         </View>
         {/* Related Items */}
-        <View style={{ flex: 1 }}>
+        <View style={{flex: 1}}>
           <Text
             style={{
               ...FONTS.h2,

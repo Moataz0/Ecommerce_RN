@@ -1,50 +1,52 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
-import React, { useState } from 'react';
-import { AuthLayout } from '..';
-import { COLORS, FONTS, icons, SIZES } from '../../constants';
-import { CustomSwitch, FormInput, TextButton } from '../../component';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { ScrollView } from 'react-native-gesture-handler';
-import { utils } from '../../utils';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
+import {AuthLayout} from '..';
+import {COLORS, FONTS, icons, SIZES} from '../../constants';
+import {CustomSwitch, FormInput, TextButton} from '../../component';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {ScrollView} from 'react-native-gesture-handler';
+import {utils} from '../../utils';
 
-const SignIn = ({ navigation }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState("");
+const SignIn = ({navigation}) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [emailError, setEmailError] = useState('');
   const [showPass, setShowPass] = useState(false);
   const [saveMe, setSaveMe] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   function isEnableSignIn() {
-    return email != "" && password != "" && emailError == "";
+    return email != '' && password != '' && emailError == '';
   }
 
+  const handleLogin = () => {
+    navigation.navigate('SignUp');
+  };
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.primary }}>
+    <SafeAreaView style={{flex: 1, backgroundColor: COLORS.primary}}>
       <ScrollView>
         <AuthLayout
           title="Let's Sign You In"
-          subTitle="Welcome back, you've been missed"
-        >
-          <View style={{
-            flex: 1,
-            marginTop: SIZES.xl
-          }}>
+          subTitle="Welcome back, you've been missed">
+          <View
+            style={{
+              flex: 1,
+              marginTop: SIZES.xl,
+            }}>
             <FormInput
-
               label="Email"
-
-              keyboardType='email-address'
-              onChange={(value) => {
+              keyboardType="email-address"
+              onChange={value => {
                 utils.validateEmail(value, setEmailError);
                 setEmail(value);
               }}
               autoCompleteType="email"
               errorMsg={emailError}
               appendComponent={
-                <View style={{ justifyContent: "center" }}>
+                <View style={{justifyContent: 'center'}}>
                   <Image
                     source={
-                      email == "" || (email != "" && emailError == "")
+                      email == '' || (email != '' && emailError == '')
                         ? icons.correct
                         : icons.cancel
                     }
@@ -52,11 +54,11 @@ const SignIn = ({ navigation }) => {
                       height: 20,
                       width: 20,
                       tintColor:
-                        email == ""
+                        email == ''
                           ? COLORS.gray
-                          : email != "" && emailError == ""
-                            ? COLORS.green
-                            : COLORS.red,
+                          : email != '' && emailError == ''
+                          ? COLORS.green
+                          : COLORS.red,
                     }}
                   />
                 </View>
@@ -69,16 +71,15 @@ const SignIn = ({ navigation }) => {
               containerStyle={{
                 marginTop: SIZES.md,
               }}
-              onChange={(value) => setPassword(value)}
+              onChange={value => setPassword(value)}
               appendComponent={
                 <TouchableOpacity
                   style={{
                     width: 40,
-                    alignItems: "flex-end",
-                    justifyContent: "center",
+                    alignItems: 'flex-end',
+                    justifyContent: 'center',
                   }}
-                  onPress={() => setShowPass(!showPass)}
-                >
+                  onPress={() => setShowPass(!showPass)}>
                   <Image
                     source={showPass ? icons.eye_close : icons.eye}
                     style={{
@@ -93,14 +94,13 @@ const SignIn = ({ navigation }) => {
 
             <View
               style={{
-                flexDirection: "row",
+                flexDirection: 'row',
                 marginTop: SIZES.lg,
-                justifyContent: "space-between",
-              }}
-            >
+                justifyContent: 'space-between',
+              }}>
               <CustomSwitch
                 value={saveMe}
-                onChange={(value) => setSaveMe(value)}
+                onChange={value => setSaveMe(value)}
               />
               <TextButton
                 label="Forgot Password?"
@@ -111,7 +111,7 @@ const SignIn = ({ navigation }) => {
                   color: COLORS.gray,
                   ...FONTS.body4,
                 }}
-                onPress={() => navigation.navigate("ForgotPassword")}
+                onPress={() => navigation.navigate('ForgotPassword')}
               />
             </View>
             <TextButton
@@ -119,32 +119,28 @@ const SignIn = ({ navigation }) => {
               disabled={isEnableSignIn() ? false : true}
               buttonContainerStyle={{
                 height: 55,
-                alignItems: "center",
+                alignItems: 'center',
                 marginTop: SIZES.xxl,
                 borderRadius: SIZES.md,
                 backgroundColor: isEnableSignIn()
                   ? COLORS.red
                   : COLORS.transparentPrimary,
               }}
-              onPress={() => navigation.navigate("Home")}
+              onPress={() => navigation.navigate('Home')}
             />
-
-
           </View>
           <View
             style={{
               flex: 1,
-              flexDirection: "row",
+              flexDirection: 'row',
               marginVertical: SIZES.lg,
-              justifyContent: "center",
-            }}
-          >
+              justifyContent: 'center',
+            }}>
             <Text
               style={{
                 color: COLORS.darkGray,
                 ...FONTS.body3,
-              }}
-            >
+              }}>
               Don't have an account?
             </Text>
             <TextButton
@@ -157,7 +153,7 @@ const SignIn = ({ navigation }) => {
                 color: COLORS.red,
                 ...FONTS.h3,
               }}
-              onPress={() => navigation.navigate("SignUp")}
+              onPress={handleLogin}
             />
           </View>
         </AuthLayout>

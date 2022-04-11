@@ -3,7 +3,7 @@ import React from 'react';
 import {COLORS, dummyData, FONTS, icons, SIZES} from '../constants';
 import {Header, LineDivider, TowColumns} from '../component';
 
-const More = () => {
+const More = ({navigation}) => {
   function renderHeader() {
     return (
       <Header
@@ -29,7 +29,7 @@ const More = () => {
       <TowColumns
         title={dummyData.more.settings}
         icon={icons.rightArrow}
-        onPress={() => console.log('settings')}
+        onPress={() => navigation.navigate('Settings')}
       />
       <LineDivider lineStyle={{marginHorizontal: SIZES.md}} />
       <TowColumns
