@@ -1,5 +1,5 @@
-import {Dimensions} from 'react-native';
-const {height, width} = Dimensions.get('window');
+import { Dimensions } from 'react-native';
+const { height, width } = Dimensions.get('window');
 
 export const COLORS = {
   primary: '#FFF', //orange
@@ -59,12 +59,12 @@ export const SIZES = {
   height,
 };
 export const FONTS = {
-  largeTitle: {fontFamily: 'Poppins-Black', fontSize: SIZES.largeTitle},
-  h1: {fontFamily: 'Poppins-Bold', fontSize: SIZES.h1, lineHeight: 36},
-  h2: {fontFamily: 'Poppins-Bold', fontSize: SIZES.h2, lineHeight: 30},
-  h3: {fontFamily: 'Poppins-SemiBold', fontSize: SIZES.h3, lineHeight: 22},
-  h4: {fontFamily: 'Poppins-SemiBold', fontSize: SIZES.h4, lineHeight: 22},
-  h5: {fontFamily: 'Poppins-SemiBold', fontSize: SIZES.h5, lineHeight: 22},
+  largeTitle: { fontFamily: 'Poppins-Black', fontSize: SIZES.largeTitle },
+  h1: { fontFamily: 'Poppins-Bold', fontSize: SIZES.h1, lineHeight: 36 },
+  h2: { fontFamily: 'Poppins-Bold', fontSize: SIZES.h2, lineHeight: 30 },
+  h3: { fontFamily: 'Poppins-SemiBold', fontSize: SIZES.h3, lineHeight: 22 },
+  h4: { fontFamily: 'Poppins-SemiBold', fontSize: SIZES.h4, lineHeight: 22 },
+  h5: { fontFamily: 'Poppins-SemiBold', fontSize: SIZES.h5, lineHeight: 22 },
   body1: {
     fontFamily: 'Poppins-Regular',
     fontSize: SIZES.body1,
@@ -111,8 +111,8 @@ export const lightTheme = {
   headerColor: COLORS.red,
 };
 
-export const selectedTheme = darkTheme;
+export const selectedTheme = lightTheme;
 
-const appTheme = {SIZES, FONTS, COLORS, lightTheme, darkTheme};
+const appTheme = { SIZES, FONTS, COLORS, lightTheme, darkTheme };
 
 export default appTheme;

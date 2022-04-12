@@ -2,25 +2,26 @@ import {
   StyleSheet,
   Text,
   View,
-  Dimensions,
+  ActivityIndicator,
   TouchableOpacity,
   FlatList,
   Image,
   SafeAreaView,
 } from 'react-native';
-import React, {useState} from 'react';
-import {Header, SliderImageBox} from '../component';
-import {COLORS, dummyData, FONTS, icons, SIZES} from '../constants';
-import {ScrollView, TextInput} from 'react-native-gesture-handler';
-import {useEffect} from 'react';
-import apiData from '../services/API';
+import React, { useState } from 'react';
+import { Header, SliderImageBox } from '../component';
+import { COLORS, dummyData, FONTS, icons, SIZES } from '../constants';
+import { ScrollView, TextInput } from 'react-native-gesture-handler';
+import { useEffect } from 'react';
+
 import CardItem from '../component/CardItem';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { apiData } from '../services/urls';
 
-const Home = ({navigation}) => {
+const Home = ({ navigation }) => {
   const dispatch = useDispatch();
-  const {appTheme} = useSelector(state => state.theme);
-
+  const { appTheme } = useSelector(state => state.theme);
+  const [loadingProduct, setLoadingProduct] = useState(false);
   const [bestSelling, setBestSelling] = useState(dummyData.bestSelling);
   const [products, setProducts] = useState([]);
 
@@ -30,15 +31,18 @@ const Home = ({navigation}) => {
 
   const getAllProducts = async () => {
     try {
+      setLoadingProduct(true)
       await apiData.getProductsFromApi().then(data => {
         setProducts(data);
+        setLoadingProduct(false)
       });
     } catch (error) {
       console.log(error);
+      setLoadingProduct(false)
     }
   };
 
-  const Section = ({title, onPress}) => {
+  const Section = ({ title, onPress }) => {
     return (
       <View>
         {/* Header */}
@@ -48,7 +52,7 @@ const Home = ({navigation}) => {
             marginHorizontal: SIZES.h1,
             marginVertical: 20,
           }}>
-          <Text style={{flex: 1, ...FONTS.body2, color: COLORS.black}}>
+          <Text style={{ flex: 1, ...FONTS.body2, color: COLORS.black }}>
             {title}
           </Text>
           <TouchableOpacity
@@ -86,7 +90,7 @@ const Home = ({navigation}) => {
         keyExtractor={item => item.id}
         horizontal
         showsHorizontalScrollIndicator={false}
-        renderItem={({item, index}) => (
+        renderItem={({ item, index }) => (
           <TouchableOpacity
             onPress={() => navigation.navigate('LivingRoom')}
             style={{
@@ -113,7 +117,7 @@ const Home = ({navigation}) => {
             }}>
             <Image
               source={item.icon}
-              style={{height: 40, width: 40, tintColor: COLORS.red}}
+              style={{ height: 40, width: 40, tintColor: COLORS.red }}
             />
             <Text
               style={{
@@ -142,10 +146,10 @@ const Home = ({navigation}) => {
         }}>
         <Image
           source={icons.search}
-          style={{height: 20, width: 20, tintColor: COLORS.black}}
+          style={{ height: 20, width: 20, tintColor: COLORS.black }}
         />
         <TextInput
-          style={{flex: 1, marginLeft: SIZES.sm, ...FONTS.body4}}
+          style={{ flex: 1, marginLeft: SIZES.sm, ...FONTS.body4 }}
           placeholderTextColor={COLORS.gray}
           placeholder="Search"
         />
@@ -154,7 +158,7 @@ const Home = ({navigation}) => {
   }
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      <View style={{flex: 1, backgroundColor: appTheme.backgroundColor}}>
+      <View style={{ flex: 1, backgroundColor: appTheme.backgroundColor }}>
         <Header title="Home" />
         {renderSearch()}
         {/* Slider Component */}
@@ -165,12 +169,13 @@ const Home = ({navigation}) => {
         {/* renderCategories */}
         {renderCategories()}
         <Section title="New Items" onPress={() => console.log('View All')} />
+        {loadingProduct && <ActivityIndicator size="large" color={COLORS.red} />}
         <FlatList
           data={products}
           keyExtractor={item => item.id}
           showsHorizontalScrollIndicator={false}
           horizontal
-          renderItem={({item, index}) => (
+          renderItem={({ item, index }) => (
             <CardItem
               key={index}
               containerStyle={{
@@ -198,7 +203,7 @@ const Home = ({navigation}) => {
           keyExtractor={item => item.id}
           showsHorizontalScrollIndicator={false}
           horizontal
-          renderItem={({item, index}) => (
+          renderItem={({ item, index }) => (
             <CardItem
               key={index}
               containerStyle={{
