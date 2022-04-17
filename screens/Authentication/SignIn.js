@@ -2,10 +2,13 @@ import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
 import {AuthLayout} from '..';
 import {COLORS, FONTS, icons, SIZES} from '../../constants';
-import {CustomSwitch, FormInput, TextButton} from '../../component';
+import {CustomSwitch, FormInput, Spinner, TextButton} from '../../component';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {ScrollView} from 'react-native-gesture-handler';
 import {utils} from '../../utils';
+import {useSelector, useDispatch} from 'react-redux';
+import {login} from '../../stores/actions/authAction';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SignIn = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -13,14 +16,26 @@ const SignIn = ({navigation}) => {
   const [emailError, setEmailError] = useState('');
   const [showPass, setShowPass] = useState(false);
   const [saveMe, setSaveMe] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
+  const dispatch = useDispatch();
+  const {user, isLoading, error, message} = useSelector(state => state.auth);
+  const {token} = user;
+  // let token = AsyncStorage.getItem('auth');
   function isEnableSignIn() {
     return email != '' && password != '' && emailError == '';
   }
 
   const handleLogin = () => {
-    navigation.navigate('SignUp');
+    let values = {
+      email,
+      password,
+    };
+    dispatch(login(values));
+    if (token) {
+      navigation.navigate('Home');
+    } else {
+      navigation.navigate('SignIn');
+    }
   };
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: COLORS.primary}}>
@@ -33,6 +48,11 @@ const SignIn = ({navigation}) => {
               flex: 1,
               marginTop: SIZES.xl,
             }}>
+            <View
+              style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+              <Text style={{color: COLORS.red}}>{error}</Text>
+            </View>
+
             <FormInput
               label="Email"
               keyboardType="email-address"
@@ -114,20 +134,25 @@ const SignIn = ({navigation}) => {
                 onPress={() => navigation.navigate('ForgotPassword')}
               />
             </View>
-            <TextButton
-              label="Sign In"
-              disabled={isEnableSignIn() ? false : true}
-              buttonContainerStyle={{
-                height: 55,
-                alignItems: 'center',
-                marginTop: SIZES.xxl,
-                borderRadius: SIZES.md,
-                backgroundColor: isEnableSignIn()
-                  ? COLORS.red
-                  : COLORS.transparentPrimary,
-              }}
-              onPress={() => navigation.navigate('Home')}
-            />
+            {isLoading ? (
+              <Spinner size="small" />
+            ) : (
+              <TextButton
+                label="Sign In"
+                disabled={isEnableSignIn() ? false : true}
+                buttonContainerStyle={{
+                  height: 55,
+                  alignItems: 'center',
+                  marginTop: SIZES.xxl,
+                  borderRadius: SIZES.md,
+                  backgroundColor: isEnableSignIn()
+                    ? COLORS.red
+                    : COLORS.transparentPrimary,
+                }}
+                // onPress={() => navigation.navigate('Home')}
+                onPress={() => handleLogin()}
+              />
+            )}
           </View>
           <View
             style={{
