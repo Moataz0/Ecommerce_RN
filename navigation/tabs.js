@@ -135,5 +135,3 @@ const Tabs = () => {
 };
 
 export default Tabs;
-
-const styles = StyleSheet.create({});

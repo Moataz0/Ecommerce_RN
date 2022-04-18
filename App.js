@@ -1,23 +1,14 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-
 import {Provider} from 'react-redux';
-import store from './stores/store';
-import RootStack from './navigation/RootStack';
-
+import {store, persistor} from './stores/store';
+import {PersistGate} from 'redux-persist/integration/react';
+import {Routes} from './Routes';
 const App = () => {
   return (
     <Provider store={store}>
-      <NavigationContainer>
-        <RootStack />
-      </NavigationContainer>
+      <PersistGate loading={null} persistor={persistor}>
+        <Routes />
+      </PersistGate>
     </Provider>
   );
 };

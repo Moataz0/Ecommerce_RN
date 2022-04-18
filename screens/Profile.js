@@ -2,6 +2,8 @@ import {View, Text, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
 import {COLORS, dummyData, FONTS, icons, images, SIZES} from '../constants';
 import {Header, LineDivider, TowColumns} from '../component';
+import {useDispatch} from 'react-redux';
+import {logout} from '../stores/actions/authAction';
 
 const Profile = ({navigation}) => {
   function renderHeader() {
@@ -17,7 +19,7 @@ const Profile = ({navigation}) => {
       />
     );
   }
-
+  const dispatch = useDispatch();
   function renderPhoto() {
     return (
       <View
@@ -61,7 +63,7 @@ const Profile = ({navigation}) => {
       <TowColumns
         title={dummyData.myAccount.sign_out}
         icon={icons.rightArrow}
-        onPress={() => console.log('sign out')}
+        onPress={() => dispatch(logout())}
       />
     </View>
   );

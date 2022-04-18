@@ -1,12 +1,13 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
-import {SIGNIN} from '../../services/urls';
+import {SIGNIN, SIGNUP} from '../../services/urls';
 import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILED,
-  SET_AUTH_TOKEN,
-  GET_AUTH_TOKEN,
+  SET_LOGOUT,
+  CREATE_USER_SUCCESS,
+  CREATE_USER_FAILED,
+  GET_USERS_SUCCESS,
 } from './actionTypes';
 
 export const login = values => async dispatch => {
@@ -16,38 +17,51 @@ export const login = values => async dispatch => {
 
   try {
     await axios.post(SIGNIN, values).then(res => {
-      dispatch(loginSuccess(res.data));
-      console.log('thedata....', res.data);
-      dispatch(setAuthToken(res.data.token));
-      // AsyncStorage.setItem('auth', res.data.token);
+      let {name} = res.data;
+      dispatch(getUsersSuccess(res.data));
+      dispatch(loginSuccess(name));
+      console.log('thedata....', res.data, ' + name is ', name);
     });
   } catch (error) {
     if (error.response.status === 400) {
       console.log('res status', error.response.status);
       dispatch(loginFailed('Invalid email or password'));
     }
-    // dispatch(loginFailed(error));
-    console.log(error);
   }
 };
 
+const getUsersSuccess = data => ({
+  type: GET_USERS_SUCCESS,
+  payload: data,
+});
+
 const loginSuccess = data => ({
   type: LOGIN_SUCCESS,
-  payload: {
-    ...data,
-  },
+  payload: data,
 });
 
 const loginFailed = errorMessage => ({
   type: LOGIN_FAILED,
   payload: errorMessage,
 });
-export const setAuthToken = token => ({
-  type: SET_AUTH_TOKEN,
-  token,
-});
 
-export const getAuthToken = token => ({
-  type: GET_AUTH_TOKEN,
-  token,
-});
+export const logout = dispatch => {
+  dispatch({
+    type: SET_LOGOUT,
+  });
+};
+
+export const registerUser = (values, navigation) => async dispatch => {
+  dispatch({
+    type: CREATE_USER_REQUEST,
+  });
+  try {
+    await axios.post(SIGNUP, values).then(res => {
+      dispatch({type: CREATE_USER_SUCCESS, payload: res.data});
+      navigation.navigate('SignIn');
+    });
+  } catch (error) {
+    console.log('ERROR When register', error);
+    dispatch({type: CREATE_USER_FAILED, payload: error});
+  }
+};

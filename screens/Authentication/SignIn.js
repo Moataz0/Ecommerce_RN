@@ -18,9 +18,10 @@ const SignIn = ({navigation}) => {
   const [saveMe, setSaveMe] = useState(false);
 
   const dispatch = useDispatch();
-  const {user, isLoading, error, message} = useSelector(state => state.auth);
-  const {token} = user;
+  const {user, isLoading, error, token} = useSelector(state => state.auth);
+
   // let token = AsyncStorage.getItem('auth');
+
   function isEnableSignIn() {
     return email != '' && password != '' && emailError == '';
   }
@@ -31,12 +32,8 @@ const SignIn = ({navigation}) => {
       password,
     };
     dispatch(login(values));
-    if (token) {
-      navigation.navigate('Home');
-    } else {
-      navigation.navigate('SignIn');
-    }
   };
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: COLORS.primary}}>
       <ScrollView>
@@ -46,7 +43,7 @@ const SignIn = ({navigation}) => {
           <View
             style={{
               flex: 1,
-              marginTop: SIZES.xl,
+              marginTop: SIZES.sm,
             }}>
             <View
               style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -131,28 +128,26 @@ const SignIn = ({navigation}) => {
                   color: COLORS.gray,
                   ...FONTS.body4,
                 }}
-                onPress={() => navigation.navigate('ForgotPassword')}
+                // onPress={() => navigation.navigate('ForgotPassword')}
               />
             </View>
-            {isLoading ? (
-              <Spinner size="small" />
-            ) : (
-              <TextButton
-                label="Sign In"
-                disabled={isEnableSignIn() ? false : true}
-                buttonContainerStyle={{
-                  height: 55,
-                  alignItems: 'center',
-                  marginTop: SIZES.xxl,
-                  borderRadius: SIZES.md,
-                  backgroundColor: isEnableSignIn()
-                    ? COLORS.red
-                    : COLORS.transparentPrimary,
-                }}
-                // onPress={() => navigation.navigate('Home')}
-                onPress={() => handleLogin()}
-              />
-            )}
+            {isLoading && <Spinner size="small" />}
+
+            <TextButton
+              label="Sign In"
+              disabled={isEnableSignIn() ? false : true}
+              buttonContainerStyle={{
+                height: 55,
+                alignItems: 'center',
+                marginTop: SIZES.xxl,
+                borderRadius: SIZES.md,
+                backgroundColor: isEnableSignIn()
+                  ? COLORS.red
+                  : COLORS.transparentPrimary,
+              }}
+              // onPress={() => navigation.navigate('Home')}
+              onPress={handleLogin}
+            />
           </View>
           <View
             style={{
@@ -178,7 +173,7 @@ const SignIn = ({navigation}) => {
                 color: COLORS.red,
                 ...FONTS.h3,
               }}
-              onPress={handleLogin}
+              onPress={() => navigation.navigate('SignUp')}
             />
           </View>
         </AuthLayout>

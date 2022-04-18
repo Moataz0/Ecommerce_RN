@@ -1,11 +1,18 @@
+import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import {SignIn, SignUp} from '../screens';
+import {ForgotPassword, SignIn, SignUp} from '../screens';
 
-export default function (Stack) {
+const AuthStack = createStackNavigator();
+export default function AuthStackNavigator() {
   return (
-    <>
-      <Stack.Screen name="SignIn" component={SignIn} />
-      <Stack.Screen name="SignUp" component={SignUp} />
-    </>
+    <AuthStack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+      initialRouteName="SignIn">
+      <AuthStack.Screen name="SignIn" component={SignIn} />
+      <AuthStack.Screen name="SignUp" component={SignUp} />
+      <AuthStack.Screen name="ForgotPassword" component={ForgotPassword} />
+    </AuthStack.Navigator>
   );
 }

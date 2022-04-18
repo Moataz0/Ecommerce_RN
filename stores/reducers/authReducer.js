@@ -1,22 +1,26 @@
 import {
-  GET_AUTH_TOKEN,
   LOGIN_FAILED,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
-  SET_AUTH_TOKEN,
+  SET_LOGOUT,
+  CREATE_USER_SUCCESS,
+  CREATE_USER_REQUEST,
+  CREATE_USER_FAILED,
+  GET_USERS_SUCCESS,
 } from '../actions/actionTypes';
 
 const initialState = {
   user: {},
-  error: '',
+  error: null,
   isLoading: false,
   isLogin: false,
   message: '',
   token: null,
+  users: [],
 };
 
 function authReducer(state = initialState, action) {
-  const {type, payload} = action;
+  let {type, payload} = action;
   switch (type) {
     case LOGIN_REQUEST:
       return {
@@ -31,16 +35,45 @@ function authReducer(state = initialState, action) {
         isLoading: false,
         user: payload,
         isLogin: true,
+        error: null,
         message: 'Login Success',
-        error: '',
       };
     case LOGIN_FAILED:
       return {...state, isLoading: false, error: payload};
-    case SET_AUTH_TOKEN:
-      return {...state, token: action.token};
 
-    case GET_AUTH_TOKEN:
-      return {...state, token: action.token};
+    case SET_LOGOUT:
+      return {
+        ...state,
+        error: '',
+        message: 'You have logged out',
+        user: {},
+        isLogin: false,
+      };
+
+    case CREATE_USER_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+        error: '',
+      };
+
+    case CREATE_USER_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        message: payload.firstName + ' created, please login',
+      };
+    case CREATE_USER_FAILED:
+      return {
+        ...state,
+        isLoading: false,
+        error: payload,
+      };
+    case GET_USERS_SUCCESS:
+      return {
+        ...state,
+        users: payload,
+      };
     default:
       return state;
   }
