@@ -131,23 +131,24 @@ const SignIn = ({navigation}) => {
                 // onPress={() => navigation.navigate('ForgotPassword')}
               />
             </View>
-            {isLoading && <Spinner size="small" />}
-
-            <TextButton
-              label="Sign In"
-              disabled={isEnableSignIn() ? false : true}
-              buttonContainerStyle={{
-                height: 55,
-                alignItems: 'center',
-                marginTop: SIZES.xxl,
-                borderRadius: SIZES.md,
-                backgroundColor: isEnableSignIn()
-                  ? COLORS.red
-                  : COLORS.transparentPrimary,
-              }}
-              // onPress={() => navigation.navigate('Home')}
-              onPress={handleLogin}
-            />
+            {isLoading ? (
+              <Spinner size="small" />
+            ) : (
+              <TextButton
+                label="Sign In"
+                disabled={isEnableSignIn() ? false : true}
+                buttonContainerStyle={{
+                  height: 55,
+                  alignItems: 'center',
+                  marginTop: SIZES.xxl,
+                  borderRadius: SIZES.md,
+                  backgroundColor: isEnableSignIn()
+                    ? COLORS.red
+                    : COLORS.transparentPrimary,
+                }}
+                onPress={handleLogin}
+              />
+            )}
           </View>
           <View
             style={{

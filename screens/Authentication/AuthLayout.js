@@ -6,7 +6,7 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 const AuthLayout = ({title, subTitle, titleContainerStyle, children}) => {
   return (
     <View
-      style={{flex: 1, paddingTop: SIZES.xl, backgroundColor: COLORS.primary}}>
+      style={{flex: 1, paddingTop: SIZES.md, backgroundColor: COLORS.primary}}>
       <KeyboardAwareScrollView
         keyboardDismissMode="on-drag"
         contentContainerStyle={{
@@ -21,7 +21,7 @@ const AuthLayout = ({title, subTitle, titleContainerStyle, children}) => {
             resizeMode="contain"
           />
         </View>
-        <View style={{marginTop: SIZES.lg, ...titleContainerStyle}}>
+        <View style={{marginTop: SIZES.md, ...titleContainerStyle}}>
           <Text style={{textAlign: 'center', ...FONTS.h2}}>{title}</Text>
           <Text
             style={{

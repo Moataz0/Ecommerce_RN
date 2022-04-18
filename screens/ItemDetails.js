@@ -76,7 +76,10 @@ const ItemDetails = ({route, navigation}) => {
   return (
     <ScrollView style={styles.flex1} showsVerticalScrollIndicator={false}>
       <View style={styles.wrapperImg}>
-        <Image source={{uri: itemImage}} style={styles.image} />
+        <Image
+          source={{uri: `https://bugshannperfumes.glaztor.com/${itemImage}`}}
+          style={styles.image}
+        />
         <IconButton
           icon={icons.rightArrow}
           iconStyle={{

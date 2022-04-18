@@ -22,17 +22,32 @@ const Home = ({navigation}) => {
   const dispatch = useDispatch();
   const {appTheme} = useSelector(state => state.theme);
   const [loadingProduct, setLoadingProduct] = useState(false);
+  const [loadingCategories, setLoadingCategories] = useState(false);
   const [bestSelling, setBestSelling] = useState(dummyData.bestSelling);
   const [products, setProducts] = useState([]);
+  const [getCategories, setGetCategories] = useState([]);
 
   useEffect(() => {
     getAllProducts();
+    getAllCategories();
   }, []);
 
+  const getAllCategories = async () => {
+    try {
+      setLoadingCategories(true);
+      await apiData.getAllCategories().then(data => {
+        setGetCategories(data);
+        setLoadingCategories(false);
+      });
+    } catch (error) {
+      console.log(error);
+      setLoadingCategories(false);
+    }
+  };
   const getAllProducts = async () => {
     try {
       setLoadingProduct(true);
-      await apiData.getProductsFromApi().then(data => {
+      await apiData.getSectionProductTracks().then(data => {
         setProducts(data);
         console.log(data);
         setLoadingProduct(false);
@@ -87,7 +102,7 @@ const Home = ({navigation}) => {
   function renderCategories() {
     return (
       <FlatList
-        data={dummyData.category}
+        data={getCategories}
         keyExtractor={item => item.id}
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -117,7 +132,7 @@ const Home = ({navigation}) => {
               elevation: 6,
             }}>
             <Image
-              source={item.icon}
+              source={item.bannerImagePath}
               style={{height: 40, width: 40, tintColor: COLORS.red}}
             />
             <Text
@@ -127,7 +142,7 @@ const Home = ({navigation}) => {
                 alignSelf: 'center',
                 marginTop: SIZES.sm,
               }}>
-              {item.name}
+              {item.enName}
             </Text>
           </TouchableOpacity>
         )}
@@ -168,7 +183,12 @@ const Home = ({navigation}) => {
           title="By Collection"
           onPress={() => console.log('View All')}></Section>
         {/* renderCategories */}
-        {renderCategories()}
+        {loadingCategories ? (
+          <ActivityIndicator size="large" color={COLORS.red} />
+        ) : (
+          renderCategories()
+        )}
+
         <Section title="New Items" onPress={() => console.log('View All')} />
         {loadingProduct && (
           <ActivityIndicator size="large" color={COLORS.red} />
@@ -190,11 +210,11 @@ const Home = ({navigation}) => {
               onPress={() =>
                 navigation.navigate('ItemDetails', {
                   itemId: item.id,
-                  itemName: item.title,
-                  itemImage: item.image,
+                  itemName: item.productName,
+                  itemImage: item.imagePath,
                   itemPrice: item.price,
-                  itemRating: item.rating.rate,
-                  itemDesc: item.description,
+                  itemRating: item.rateCount,
+                  itemDesc: item.productTrackName,
                 })
               }
             />

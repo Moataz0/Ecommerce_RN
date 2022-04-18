@@ -63,7 +63,7 @@ const Profile = ({navigation}) => {
       <TowColumns
         title={dummyData.myAccount.sign_out}
         icon={icons.rightArrow}
-        onPress={() => dispatch(logout())}
+        onPress={() => dispatch(logout)}
       />
     </View>
   );
