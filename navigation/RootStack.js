@@ -5,6 +5,7 @@ import {
   AddCard,
   Address,
   Checkout,
+  Home,
   ItemDetails,
   LivingRoom,
   ProductDetail,
@@ -22,7 +23,7 @@ export default function MainStackNavigator() {
       }}
       initialRouteName={'Home'}>
       <MainStack.Screen name="Tabs" component={Tabs} />
-      <MainStack.Screen name="Home" component={Tabs} />
+      {/* <MainStack.Screen name="Home" component={Tabs} /> */}
       <MainStack.Screen name="LivingRoom" component={LivingRoom} />
       <MainStack.Screen name="ProductDetail" component={ProductDetail} />
       <MainStack.Screen name="AddCard" component={AddCard} />
