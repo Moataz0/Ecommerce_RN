@@ -45,7 +45,7 @@ const getAllCategories = () =>
 const getBrands = () =>
   new Promise((resolve, reject) => {
     const brandsEndPoint = GETBRANDS;
-    fetch(catEndPoint)
+    fetch(brandsEndPoint)
       .then(res => res.json())
       .then(response => {
         resolve(response);

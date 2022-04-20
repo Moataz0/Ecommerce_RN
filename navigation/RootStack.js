@@ -5,6 +5,7 @@ import {
   AddCard,
   Address,
   Checkout,
+  Home,
   ItemDetails,
   LivingRoom,
   ProductDetail,

@@ -23,8 +23,9 @@ export const login = values => async dispatch => {
       console.log('thedata....', res.data, ' + name is ', name);
     });
   } catch (error) {
-    if (error.response.status === 400) {
-      console.log('res status', error.response.status);
+    let stus = error.response.status;
+    if (stus === 400 || stus === 404) {
+      console.log('res status', stus);
       dispatch(loginFailed('Invalid email or password'));
     }
   }
