@@ -60,7 +60,8 @@ export const registerUser = (values, navigation) => async dispatch => {
   try {
     await axios.post(SIGNUP, values).then(res => {
       dispatch({type: CREATE_USER_SUCCESS, payload: res.data});
-      navigation.navigate('SignIn');
+      console.log('Congrats......... ', re.data);
+      // navigation.navigate('SignIn');
     });
   } catch (error) {
     console.log('Error when register', error);
