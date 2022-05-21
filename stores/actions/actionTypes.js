@@ -16,3 +16,5 @@ export const SET_LOGOUT = 'SET_LOGOUT';
 
 export const SIGNUP_USER_SUCCESS = 'SIGNUP_USER_SUCCESS';
 export const SIGNUP_USER_FAIL = 'SIGNUP_USER_FAIL';
+
+export const CART = 'CART'
