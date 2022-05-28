@@ -49,7 +49,9 @@ const CardItem = ({
           marginHorizontal: withSale ? SIZES.sm : SIZES.lg,
           zIndex: 1,
         }}>
-        <View style={{flex: 1, flexDirection: 'row-reverse'}}>
+        <TouchableOpacity
+          style={{flex: 1, flexDirection: 'row-reverse'}}
+          onPress={() => console.log('Add to Cart')}>
           <Image
             source={icons.love}
             style={{
@@ -58,7 +60,7 @@ const CardItem = ({
               tintColor: item.isFavourite ? COLORS.red : COLORS.red,
             }}
           />
-        </View>
+        </TouchableOpacity>
         {withSale && (
           <View
             style={{
