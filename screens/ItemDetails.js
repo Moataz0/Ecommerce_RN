@@ -20,7 +20,7 @@ const ItemDetails = ({ route, navigation }) => {
 
   const dispatch = useDispatch();
 
-  const productId = useSelector((state) => state.products.id);
+  const productId = useSelector((state) => state.id);
   console.log("id........", itemId)
   function renderFooter() {
 
