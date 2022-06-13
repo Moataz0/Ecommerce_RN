@@ -1,5 +1,5 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React, {useEffect} from 'react';
 import {
   CartItems,
   FooterTotal,
@@ -8,10 +8,14 @@ import {
   IconButton,
   TextButton,
 } from '../component';
-import { COLORS, dummyData, FONTS, icons, SIZES } from '../constants';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-
-const Cart = ({ navigation }) => {
+import {COLORS, dummyData, FONTS, icons, SIZES} from '../constants';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {useSelector} from 'react-redux';
+const Cart = ({navigation}) => {
+  const cartItems = useSelector(state => state.cart);
+  useEffect(() => {
+    console.log('Cartitems....', cartItems.cart.length);
+  }, [cartItems]);
   function renderHeader() {
     return (
       <Header
@@ -28,7 +32,7 @@ const Cart = ({ navigation }) => {
               height: 50,
               justifyContent: 'center',
               alignItems: 'center',
-              transform: [{ scaleX: -1 }],
+              transform: [{scaleX: -1}],
             }}
             onPress={() => navigation.goBack()}
           />
@@ -40,11 +44,12 @@ const Cart = ({ navigation }) => {
   function renderCartItems() {
     return (
       <FlatList
-        style={{ paddingTop: SIZES.sm }}
-        data={dummyData.cart}
-        keyExtractor={item => item.id}
+        style={{paddingTop: SIZES.sm}}
+        data={cartItems?.cart}
+        keyExtractor={item => item.itemId}
+        // keyExtractor={(_item, i) => i.toString()}
         showsVerticalScrollIndicator={false}
-        renderItem={({ item, i }) => {
+        renderItem={({item, i}) => {
           return (
             <CartItems
               inCart={true}
@@ -68,9 +73,27 @@ const Cart = ({ navigation }) => {
       />
     );
   }
+
+  function renderNoCart() {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Text>Your cart is empty!</Text>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Home')}
+          style={{
+            backgroundColor: COLORS.red,
+            padding: SIZES.sm,
+            marginVertical: SIZES.sm,
+            borderRadius: SIZES.sm,
+          }}>
+          <Text style={{color: COLORS.white}}>Continue shopping</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
   function renderDiscountCoupon() {
     return (
-      <View style={{ marginTop: SIZES.lg, marginBottom: 10 }}>
+      <View style={{marginTop: SIZES.lg, marginBottom: 10}}>
         <Text
           style={{
             ...FONTS.h3,
@@ -123,14 +146,17 @@ const Cart = ({ navigation }) => {
           // paddingHorizontal: SIZES.lg,
           paddingBottom: 20,
         }}>
-        {renderCartItems()}
-        {renderDiscountCoupon()}
+        {cartItems.cart.length === 0
+          ? renderNoCart()
+          : [renderCartItems(), renderDiscountCoupon()]}
       </KeyboardAwareScrollView>
-      <FooterTotal
-        subTotal={50.0}
-        total={50.0}
-        onPress={() => navigation.navigate('Checkout')}
-      />
+      {cartItems.cart.length !== 0 && (
+        <FooterTotal
+          subTotal={50.0}
+          total={50.0}
+          onPress={() => navigation.navigate('Checkout')}
+        />
+      )}
     </View>
   );
 };

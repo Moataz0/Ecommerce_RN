@@ -1,8 +1,10 @@
-import {Image, StyleSheet, Text, TextInput, View} from 'react-native';
+import {Image, TouchableOpacity, Text, TextInput, View} from 'react-native';
 import React from 'react';
 import {COLORS, FONTS, icons, SIZES} from '../constants';
 import TextButton from './TextButton';
 import {IconButton} from '.';
+import {removeFromCart} from '../stores/actions/cartAction';
+import {useDispatch} from 'react-redux';
 
 const CartItems = ({
   containerStyle,
@@ -11,8 +13,10 @@ const CartItems = ({
   onPress,
   inCart = false,
 }) => {
+  const dispatch = useDispatch();
   return (
     <View
+      key={item.itemId}
       style={{
         flexDirection: 'row',
         borderRadius: SIZES.sm,
@@ -31,7 +35,13 @@ const CartItems = ({
       }}>
       <View style={{flex: 1}}>
         {/* Image */}
-        <Image source={item.image} style={imageStyle} resizeMode="contain" />
+        <Image
+          source={{
+            uri: `https://bugshannperfumes.glaztor.com/${item.itemImage}`,
+          }}
+          style={imageStyle}
+          resizeMode="contain"
+        />
         {inCart && (
           <View style={{marginHorizontal: SIZES.xxl, marginVertical: 4}}>
             <IconButton
@@ -62,7 +72,7 @@ const CartItems = ({
             color: COLORS.black,
             marginTop: SIZES.md,
           }}>
-          {item.title}
+          {item.itemName}
         </Text>
         <Text
           style={{
@@ -70,7 +80,7 @@ const CartItems = ({
             ...FONTS.h3,
             color: COLORS.red,
           }}>
-          ${item.price}
+          ${item.itemPrice}
         </Text>
         <Text
           style={{
@@ -81,9 +91,11 @@ const CartItems = ({
             alignItems: 'flex-start',
             justifyContent: 'flex-start',
           }}>
-          {item.description.substring(0, 100) + ' ...'}
+          {/* {item.description.substring(0, 100) + ' ...'} */}
+          {item.itemDesc}
         </Text>
-        <View
+        <TouchableOpacity
+          onPress={() => dispatch(removeFromCart(item.itemId))}
           style={{
             flexDirection: 'row',
             position: 'absolute',
@@ -94,7 +106,7 @@ const CartItems = ({
             source={icons.cross}
             style={{width: 20, height: 20, tintColor: COLORS.gray}}
           />
-        </View>
+        </TouchableOpacity>
 
         {inCart && (
           <View

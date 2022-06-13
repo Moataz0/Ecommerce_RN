@@ -6,7 +6,7 @@ import {
 } from '@react-navigation/bottom-tabs';
 import {Cart, Favourite, Home, More, Profile} from '../screens';
 import {COLORS, icons} from '../constants';
-
+import {useSelector} from 'react-redux';
 const Tab = createBottomTabNavigator();
 const CustomTabBar = props => {
   return (
@@ -26,6 +26,8 @@ const CustomTabBar = props => {
   );
 };
 const Tabs = () => {
+  const qantity = useSelector(state => state.cart.cart);
+  // console.log('qanty', qantity.length);
   return (
     <Tab.Navigator
       screenOptions={{
@@ -101,15 +103,37 @@ const Tabs = () => {
         component={Cart}
         options={{
           tabBarIcon: ({focused}) => (
-            <Image
-              source={icons.cart}
-              resizeMode="contain"
-              style={{
-                height: 20,
-                width: 20,
-                tintColor: focused ? COLORS.red : COLORS.gray2,
-              }}
-            />
+            <>
+              {qantity.length > 0 && (
+                <View>
+                  <View
+                    style={{
+                      position: 'absolute',
+                      margin: 15,
+                      height: 25,
+                      marginLeft: -5,
+                      bottom: -20,
+                      width: 25,
+                      borderRadius: 15,
+                      backgroundColor: COLORS.green,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      zIndex: 2000,
+                    }}>
+                    <Text style={{color: COLORS.white}}>{qantity?.length}</Text>
+                  </View>
+                </View>
+              )}
+              <Image
+                source={icons.cart}
+                resizeMode="contain"
+                style={{
+                  height: 20,
+                  width: 20,
+                  tintColor: focused ? COLORS.red : COLORS.gray2,
+                }}
+              />
+            </>
           ),
         }}
       />

@@ -1,45 +1,57 @@
-import { ADD_TO_CART, ADJUST_QTY, LOAD_CURRENT_ITEM, REMOVE_FROM_CART } from "../actions/actionTypes"
-
+import {
+  ADD_TO_CART,
+  ADJUST_QTY,
+  LOAD_CURRENT_ITEM,
+  REMOVE_FROM_CART,
+} from '../actions/actionTypes';
 
 const initialState = {
-
-  products: [],
   cart: [],
-  currentItem: null
+  currentItem: null,
+  total: 0,
 };
 
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART:
-      const item = state.products.find(prod => prod.id === action.payload.id);
-      const inCart = state.cart.find(item => item.id === action.payload.id ? true : false);
+      return {
+        ...state,
+        cart: [...state.cart, action.id],
+        // ...action.id,
+      };
+
+    case REMOVE_FROM_CART:
+      // const existOne = state.cart.find(x => x.itemId === action.id);
+      // if (existOne.qty === 1) {
+      //   return state.cart.filter(x => (x.itemId === item.itemId) !== action.id);
+      // } else {
+      //   return state.cart.map(x =>
+      //     x.itemId === action.id ? {...x, qty: x.qty - 1} : x,
+      //   );
+      // }
 
       return {
         ...state,
-        cart: inCart ? state.cart.map(item => item.id === action.payload.id ?
-          { ...item, qty: item.qty + 1 } : item) : [...state.cart, { ...item, qty: 1 }]
-      }
-    case REMOVE_FROM_CART:
-      return {
-        ...state,
-        cart: state.cart.filter(item => item.id != action.payload.id)
-      }
+        cart: state.cart.filter(x => x.itemId !== action.payload.id),
+      };
+
     case ADJUST_QTY:
       return {
         ...state,
-        cart: state.cart.map(item => item.id === action.payload.id ?
-          { ...item, qty: action.payload.qty } : item)
-      }
+        cart: state.cart.map(item =>
+          item.id === action.payload.id
+            ? {...item, qty: action.payload.qty}
+            : item,
+        ),
+      };
     case LOAD_CURRENT_ITEM:
       return {
         ...state,
-        currentItem: action.payload
-      }
+        currentItem: action.payload,
+      };
     default:
-      return state
+      return state;
   }
-
-
-}
+};
 
 export default cartReducer;

@@ -8,22 +8,20 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import { Header, IconButton, TextButton, TowColumns } from '../component';
-import { COLORS, FONTS, icons, images, SIZES } from '../constants';
-import { useDispatch, useSelector } from 'react-redux';
-import { addToCart } from '../stores/actions/cartAction';
+import {Header, IconButton, TextButton, TowColumns} from '../component';
+import {COLORS, FONTS, icons, images, SIZES} from '../constants';
+import {useDispatch, useSelector} from 'react-redux';
+import {addToCart} from '../stores/actions/cartAction';
 
-
-const ItemDetails = ({ route, navigation }) => {
-  const { itemId, itemName, itemImage, itemPrice, itemRating, itemDesc } =
+const ItemDetails = ({route, navigation}) => {
+  const {itemId, itemName, itemImage, itemPrice, itemRating, itemDesc} =
     route.params;
 
   const dispatch = useDispatch();
-
-  const productId = useSelector((state) => state.id);
-  console.log("id........", itemId)
+  let items = {itemId, itemName, itemImage, itemPrice, itemRating, itemDesc};
+  const productId = useSelector(state => state.id);
+  console.log('id........', itemId);
   function renderFooter() {
-
     return (
       <View
         style={{
@@ -56,10 +54,10 @@ const ItemDetails = ({ route, navigation }) => {
           label2={
             <Image
               source={icons.cart}
-              style={{ height: 25, width: 25, tintColor: COLORS.primary }}
+              style={{height: 25, width: 25, tintColor: COLORS.primary}}
             />
           }
-          onPress={() => dispatch(addToCart(productId))}
+          onPress={() => dispatch(addToCart(items))}
         />
         <IconButton
           icon={icons.ecommerce}
@@ -76,7 +74,7 @@ const ItemDetails = ({ route, navigation }) => {
             width: 25,
             tintColor: COLORS.primary,
           }}
-          onPress={() => console.log("Test")}
+          onPress={() => console.log('Test')}
         />
       </View>
     );
@@ -85,7 +83,7 @@ const ItemDetails = ({ route, navigation }) => {
     <ScrollView style={styles.flex1} showsVerticalScrollIndicator={false}>
       <View style={styles.wrapperImg}>
         <Image
-          source={{ uri: `https://bugshannperfumes.glaztor.com/${itemImage}` }}
+          source={{uri: `https://bugshannperfumes.glaztor.com/${itemImage}`}}
           style={styles.image}
         />
         <IconButton
@@ -104,14 +102,14 @@ const ItemDetails = ({ route, navigation }) => {
             paddingHorizontal: 4,
             paddingVertical: 4,
             borderRadius: 50,
-            transform: [{ scaleX: -1 }],
+            transform: [{scaleX: -1}],
           }}
           onPress={() => navigation.navigate('Home')}
         />
       </View>
       {/* Title and icon */}
       <View style={styles.content}>
-        <Text style={{ ...FONTS.h3, color: COLORS.black, flex: 1 }}>
+        <Text style={{...FONTS.h3, color: COLORS.black, flex: 1}}>
           {itemName}
         </Text>
         <IconButton
@@ -142,10 +140,10 @@ const ItemDetails = ({ route, navigation }) => {
         }}>
         ${itemPrice}
       </Text>
-      <View style={{ marginHorizontal: SIZES.md }}>
-        <Text style={{ fontSize: 12, marginTop: SIZES.sm }}>{itemDesc}</Text>
+      <View style={{marginHorizontal: SIZES.md}}>
+        <Text style={{fontSize: 12, marginTop: SIZES.sm}}>{itemDesc}</Text>
       </View>
-      <View style={{ paddingVertical: SIZES.lg }}>
+      <View style={{paddingVertical: SIZES.lg}}>
         <Text
           style={{
             ...FONTS.h2,

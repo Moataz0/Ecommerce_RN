@@ -5,17 +5,17 @@ import {
   REMOVE_FROM_CART,
 } from './actionTypes';
 
-export const addToCart = itemID => {
+export const addToCart = id => {
   return {
     type: ADD_TO_CART,
-    payload: { id: itemID },
+    id,
   };
 };
 
 export const removeFromCart = itemID => {
   return {
     type: REMOVE_FROM_CART,
-    payload: { id: itemID },
+    payload: {id: itemID},
   };
 };
 
